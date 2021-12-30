@@ -20,7 +20,7 @@ class UserServiceReal with UserServiceConfig implements IUserService{
   }
 
   Uri _getUriForEndpoint(String endpoint){
-    return Uri.parse(USER_SERVICE_URL+ ":"+ USER_SERVICE_PORT +endpoint);
+    return Uri.parse(SERVICE_URL+ ":"+ USER_SERVICE_PORT +endpoint);
   }
 
   @override
