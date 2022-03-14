@@ -1,0 +1,325 @@
+swagger: "2.0"
+info:
+  description: "This is the API definition for the Questionnaire Service of the FMP System. The QuestionnaireService is designed to store and make available individual questionnaires."
+  version: "1.0.0"
+  title: "FMP Questionnaire Service API"
+  contact:
+    email: "paul.riedlingen@gmail.com"
+basePath: "/v1"
+tags:
+- name: "Questionnaire"
+  description: "Read/Write/Update and Delete Questionnaire to create Questionnaires out of independent Questions"
+- name: "Questionnaires"
+  description: "Lists of Questionnaire"
+- name: "Filled Questionnaire"
+  description: "Read a fully filled out questionnaire ready to be passed to the front-end user"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /questionnaire:
+    post:
+      tags:
+      - "Questionnaire"
+      summary: "Add a new Questionnaire to the service"
+      security: 
+        - api_key: []
+      description: ""
+      operationId: "addQuestionnaire"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Questionnaire object to add"
+        required: true
+        schema:
+          $ref: "#/definitions/Questionnaire"
+      responses:
+        "405":
+          description: "Invalid input"
+        "400":
+          description: "Invalid ID supplied"
+    put: 
+      tags:
+      - "Questionnaire"
+      summary: "Update and existing Questionnaire"
+      security: 
+        - api_key: []
+      operationId: "updateQuestionnaire"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Questionnaire object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Questionnaire"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Question not found"
+        "405":
+          description: "Validation exception"
+  /questionnaire/{questionnaireId}:
+    get:
+      tags:
+      - "Questionnaire"
+      summary: "Find Questionnaire by ID"
+      security: 
+        - api_key: []
+      description: "Returns a single Questionnaire"
+      operationId: "getQuestionnaireById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "questionnaireId"
+        in: "path"
+        description: "ID of Questionnaire to return"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Questionnaire"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Questionnaire not found"
+    delete:
+      tags:
+      - "Questionnaire"
+      summary: "Deletes Questionnaire by ID"
+      security: 
+        - api_key: []
+      operationId: "deleteQuestionnaire"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "questionnaireId"
+        in: "path"
+        description: "ID of Questionnaire to return"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Questionnaire"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Questionnaire not found"
+  /questionnaires:
+    get:
+      tags:
+      - "Questionnaires"
+      summary: "Find Questionnaires by parameters such as a list of IDs"
+      security: 
+        - api_key: []
+      description: "Returns a list of Questionnaires"
+      operationId: "getQuestionnaires"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ids"
+        in: "query"
+        description: "List of IDs of Questionnaires to return"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: csv
+      - name: "count"
+        in: "query"
+        description: "The maximum number of Questionnaires to be returned"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "The offset of the index of the first question, useable for paging the results"
+        type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/Questionnaire"
+        "400":
+          description: "Invalid IDs supplied"
+  /filledQuestionnaire{questionnaireId}:
+    get:
+      tags:
+      - "Filled Questionnaire"
+      summary: "Find filled Questionnaire by ID"
+      security: 
+        - api_key: []
+      description: "Returns a single FilledQuestionnaire"
+      operationId: "getFilledQuestionnaireById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "questionnaireId"
+        in: "path"
+        description: "ID of Questionnaire to return"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/FilledQuestionnaire"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Questionnaire not found"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Questionnaire:
+    type: "object"
+    required:
+    - "id"
+    - "label"
+    - "elements"
+    properties:
+      id:
+        type: "string"
+        description: "The unique id of this questionnaire"
+      label:
+        type: "string"
+        description: "The label of the questinnaire"
+      elements:
+        type: "array"
+        description: "The ids of the questions inside this questionnaire"
+        items:
+          $ref: "#/definitions/QuestionnaireElement"
+  QuestionnaireElement:
+    type: "object"
+    required:
+    - "question_id"
+    - "index"
+    properties:
+      question_id: 
+        type: "string"
+        description: "The Id of the corresponding Question"
+      index:
+        type: "integer"
+        description: "The index of this question within the Questionnaire"
+      depends_on:
+        $ref: "#/definitions/QuestionDependency"
+  QuestionDependency:
+    type: "object"
+    required:
+    - "question_id"
+    - "question_value"
+    properties:
+      question_id: 
+        type: "string"
+        description: "The Id of the Question that the current question in dependent on"
+      question_value:
+        type: "string"
+        description: "The to a string serialized value, the question on which the current question is dependent to has to have in order to show the current question"
+      invert:
+        type: "boolean"
+        description: "If invert=true, then the question will be is displayed if the previou question does NOT take the value in question_value."
+  FilledQuestionnaire:
+    type: "object"
+    required:
+    - "id"
+    - "label"
+    - "elements"
+    properties:
+      id:
+        type: "string"
+        description: "The unique id of this questionnaire"
+      label:
+        type: "string"
+        description: "The label of the questinnaire"
+      elements:
+        type: "array"
+        description: "The ids of the questions inside this questionnaire"
+        items:
+          $ref: "#/definitions/FilledQuestionnaireElement"
+  FilledQuestionnaireElement:
+    type: "object"
+    required:
+    - "question_id"
+    - "index"
+    properties:
+      index:
+        type: "integer"
+        description: "The index of this question within the Questionnaire"
+      question: 
+        $ref: "#/definitions/FilledQuestion"
+      depends_on:
+        $ref: "#/definitions/QuestionDependency"
+  FilledQuestion:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "The unique id of this question"
+      text:
+        type: "string"
+        description: "The text the end user is shown if he has to answer the question"
+      user_property:
+        $ref: "#/definitions/UserProperty"
+  UserProperty:
+    type: "object"
+    required:
+    - "id"
+    - "label"
+    - "type"
+    properties:
+      id: 
+        type: "string"
+        description: "The id of the UserProperty"
+      label:
+        type: "string"
+        
+        description: "The name of the property"
+      type:
+        type: "string"
+        description: |
+          The type of the Properity:
+      
+          * `BOOL` - Haben Sie schmerzen? - Ja/Nein
+          * `INT` - Wie alt sind Sie? - 19
+          * `FULL_TEXT` - Was machen Sie für Sportarten? - Yoga,Fußball
+          * `BODY_MAP` - Bitte wählen Sie Problem auf der Abbildung aus
+          * `ENUM` - Wie ernähren Sie sich? - Vegetarisch
+        enum:
+          - "BOOL"
+          - "INT"
+          - "FULL_TEXT"
+          - "BODY_MAP"
+          - "ENUM"
+      property_options:
+        type: "object"
+        description: "The possible values of the property, if it is is an enum. {Key:Label}"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

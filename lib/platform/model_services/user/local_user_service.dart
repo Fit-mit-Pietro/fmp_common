@@ -5,7 +5,6 @@ import 'package:fmp_common/platform/backend_service/backend_service.dart';
 import 'package:fmp_common/platform/models/user_service/user.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
 import 'package:fmp_common/platform/models/user_service/user_register_result.dart';
-import 'package:fmp_common/platform/navigation/base_navigator_service.dart';
 import 'package:fmp_common/platform/persistence/secure_storage_service.dart';
 
 enum LocalUserState {loggedOut,loggedIn,unverified}
@@ -36,10 +35,7 @@ class LocalUserService{
       await login(email, password);
     }else{
       _localUserState = LocalUserState.loggedOut;
-      BaseNavigatorService.instance.navigateAccordingToUserState(_localUserState);
     }
-
-
     return _localUserState;
 
   }
@@ -52,7 +48,6 @@ class LocalUserService{
       onUserLoggedInFailed(result);
     }
 
-    BaseNavigatorService.instance.navigateAccordingToUserState(_localUserState);
 
     return result;
   }
@@ -86,9 +81,9 @@ class LocalUserService{
 
   }
 
-  void delete() async{
+  Future delete() async{
 
-    logOut();
+    await logOut();
 
     if(userToken != null){
       await BackendService.instance.user.delete(userToken!);
@@ -103,7 +98,6 @@ class LocalUserService{
     await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_EMAIL);
     await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_PASSWORD);
 
-    BaseNavigatorService.instance.navigateAccordingToUserState(_localUserState);
   }
 
 

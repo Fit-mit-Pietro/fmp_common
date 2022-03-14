@@ -12,30 +12,32 @@ import 'data/base_navigation_global_keys.dart';
 
 class BaseNavigator implements IBaseNavigator{
 
-  late Function() _update;
+  late Function update;
   late Widget _screenHome;
 
   @override
-  Future? init(Function() update,Widget screenHome){
-    _update = update;
+  Future? init(Function update,Widget screenHome){
+    print("Init BaseNavigator");
+    this.update = update;
+    this.update();
     _screenHome = screenHome;
+
   }
 
   @override
   void navigateAccordingToUserState(LocalUserState state) {
-    print("navigateAccordingToUserState");
     dynamic screen;
 
     switch(state){
 
       case LocalUserState.loggedOut:
-        screen = ScreenLogIn();
+        screen = const ScreenLogIn();
         break;
       case LocalUserState.loggedIn:
         screen = _screenHome;
         break;
       case LocalUserState.unverified:
-        screen = ScreenLogIn();
+        screen = const ScreenLogIn();
         break;
     }
 

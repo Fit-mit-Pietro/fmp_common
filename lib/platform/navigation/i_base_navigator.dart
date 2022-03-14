@@ -17,7 +17,7 @@ abstract class IBaseNavigator{
     }
   }
 
-  Future? init(Function() update,Widget ScreenHome);
+  Future? init(Function update,Widget ScreenHome);
 
   void navigateAccordingToUserState(LocalUserState state);
 

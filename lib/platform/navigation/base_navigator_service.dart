@@ -10,7 +10,7 @@ class BaseNavigatorService{
 
   static Future init(BaseNavigationType type,Function updateCallback,Widget homeScreen) async{
     _instance = IBaseNavigator(type);
-    await _instance.init(updateCallback as dynamic Function(),homeScreen);
+    await _instance.init(updateCallback,homeScreen);
   }
 
   static IBaseNavigator _instance = IBaseNavigator(BaseNavigationType.STANDARD);

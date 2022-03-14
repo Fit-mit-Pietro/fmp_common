@@ -9,23 +9,26 @@ class SSSKeys{
 
 class SecureStorageService{
 
-  SecureStorageService._();
+   SecureStorageService._();
   static late SecureStorageService instance;
   static Future init() async{
     instance = SecureStorageService._();
   }
 
-  FlutterSecureStorage _secureStorage = new FlutterSecureStorage();
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   Future storeValue(String key,String value){
     return _secureStorage.write(key: key, value: value);
+    return Future.value();
   }
 
   Future<String?> readValue(String key){
+    //return Future.value(null);
     return _secureStorage.read(key: key);
   }
 
   Future deleteValue(String key){
+
     return _secureStorage.delete(key: key);
   }
 
