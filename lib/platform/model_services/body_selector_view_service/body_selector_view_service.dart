@@ -24,12 +24,21 @@ class BodySelectorViewService {
 
   static const List<Map<String,dynamic>> SymptomsData = [
     { "id": "neck_stiffness","label": "Steifheit" },
-    { "id": "discprolapse","label": "Bandscheibenvorfall HWS" },
+    { "id": "discprolapse","label": "Bandscheibenvorfall" },
+    { "id": "tension","label": "Verspannungen" },
+    { "id": "muscular_imbalance","label": "Muskuläres Ungleichgewicht / Dysbalance" },
+    { "id": "movement_restrictions","label": "Bewegungseinschränkungen" },
+    { "id": "radiation_arm","label": "Ausstrahlung oder kribbeln in den Armen" },
+    { "id": "pain_chest","label": "Schmerzen zwischen den Schulterblättern" },
+    { "id": "pain_thorax","label": "Ringförmige ausstrahlende schmerzen in den Brustkorb und Rippenregionen (Thorax)" },
     { "id": "blockade","label": "Blockaden HWS" },
     { "id": "impingmentsyndrom","label": "impingment Syndrom" },
     { "id": "frozenshoulder","label": "Frozen shoulder" },
     { "id": "rotatorcuff","label": "Rotatoren Manschette" },
     { "id": "arthrose","label": "Arthrose" },
+    { "id": "tendonitis","label": "Sehnenscheidenentzündung" },
+    { "id": "sprain","label": "Verstauchung / Contusion" },
+    { "id": "carpal_bones","label": "Handwurzelknochen / Schmerzen am Daumengelenk" },
     { "id": "tennisarm","label": "Tennisarm" },
     { "id": "golfarm","label": "Golfer Ellenbogen" },
     { "id": "rotatorcuff","label": "Rotatoren Manschette" },
@@ -37,24 +46,56 @@ class BodySelectorViewService {
     { "id": "ischialgia","label": "Ischialgie" },
     { "id": "periformissyndrom","label": "Periformis Syndrom" },
     { "id": "hip_stiffness","label": "Verkürzung und Steifheit der Hüfte" },
+    { "id": "igs_blockade","label": "ISG Blockade" },
     { "id": "meniskus","label": "Meniskus" },
     { "id": "arthrose","label": "Arthrose" },
     { "id": "patellatipsyndrom","label": "Patella spitzen Syndrom" },
     { "id": "femorispatelaris","label": "schmerzen hinter der Kniescheibe (Femoris Patelaris)" },
-    { "id": "achilodie","label": "Achilodie" },
-    { "id": "shortening","label": "Verkürzung des Unterschenkels" },
+    { "id": "shortening","label": "Verkürzung" },
     { "id": "achillesirritation","label": "Achilis Sehnenreizung" },
+    { "id": "achilles_irruption","label": "Achilissehnen ruptur/Zerreißung" },
+    { "id": "foot_root_blockade","label": "Fuß-Wurzel Blockade" },
+    { "id": "haglund_foot","label": "Haglund-Ferse" },
+    { "id": "fersensporn","label": "Fersensporn" },
+    { "id": "achillesirritation","label": "Achilis Sehnenreizung" },
+    { "id": "ruption","label": "Bänderriss / Stabilisierung nach Bänderriss" },
+    { "id": "jaw_dislocations","label": "Kiefergelenk Verrenkungen" },
+    { "id": "trigeminus_neuralgie","label": "Trigeminus-Neuralgie" },
+    { "id": "migraine","label": "Migräne" },
+    { "id": "head_neck_tension","label": "Spannungs Kopfschmerzen / durch Nacken Verspannungen," },
+    { "id": "austrahlung_beine_gesaes","label": "Austrahlung und kribbeln in den Beinen oder und ins Gesäß" },
+    { "id": "piriformis","label": "Piriformis" },
+    { "id": "wirbelgleiten","label": "Wirbelgleiten" },
+    { "id": "ischias_syndrom","label": "Ischias Syndrom" },
+
+    { "id": "muscle_tearing","label": "Muskelfaserriss / Zerrung" },
+    { "id": "adductors_imbalance","label": "Adductoren Dysbalance" },
+    { "id": "abductor_dysbalance","label": "Abduktoren Dysbalance" },
+    { "id": "straining","label": "Zerrung" },
+
+    { "id": "tibialis_anterior_syndrom","label": "Tibialis Anterior Syndrom" },
+    { "id": "calf_cramps","label": "Waden Krämpfe (oft Nachts)" },
+    { "id": "verkürzung_nackenmuskulatur","label": "Verkürzung nackenmuskulatur und Trapezius (Tastaturhaltung)" },
+
   ];
 
   static const List<Map<String, dynamic>> BodyPartsData = [
     {
       "id": "head",
       "label": "Kopf",
-      "symptoms": []
+      "symptoms": ["migraine","head_neck_tension","headache"]
+    },{
+      "id": "jaw",
+      "label": "Kiefer",
+      "symptoms": ["jaw_dislocations","trigeminus_neuralgie"]
     }, {
       "id": "neck",
       "label": "Nacken",
       "symptoms": ["neck_stiffness","discprolapse","blockade_hws"]
+    },{
+      "id": "cervical_spine",
+      "label": "Halswirbelsäule",
+      "symptoms": ["discprolapse","tension","muscular_imbalance","movement_restrictions","radiation_arm","verkürzung_nackenmuskulatur"]
     },{
       "id": "shoulder_R",
       "label": "Rechte Schulter",
@@ -75,67 +116,70 @@ class BodySelectorViewService {
       "id": "body",
       "image_keys": ["body","body_L","body_R"],
       "label": "Oberkörper",
-      "symptoms": []
+      "symptoms": ["tension"]
     },{
       "id": "lumbarSpine",
       "label": "Lendenwirbelsäule",
-      "symptoms": []
-    },{
+      "symptoms": ["movement_restrictions","austrahlung_beine_gesaes","piriformis","wirbelgleiten","ischias_syndrom",]
+    },
+    {
       "id": "thoracicSpine",
       "label": "Brustwirbelsäule",
-      "symptoms": []
+      "symptoms": ["discprolapse","pain_chest","pain_thorax"]
     },{
       "id": "forearm_R",
       "label": "Rechter Unterarm",
-      "symptoms": []
+      "symptoms": ["tension"]
     },{
       "id": "forearm_L",
       "label": "Linker Unterarm",
-      "symptoms": []
+      "symptoms": ["tension"]
     },{
       "id": "hip",
       "label": "Hüfte",
-      "symptoms":["arthrose","ischialgia","periformissyndrom","stiffness",]
+      "symptoms":["arthrose","ischialgia","periformissyndrom","stiffness","muscular_imbalance","igs_blockade","impingmentsyndrom"]
     },{
       "id": "hand_R",
       "label": "Rechte Hand",
-      "symptoms": []
+      "symptoms": ["arthrose","tendonitis","sprain","carpal_bones"]
     },{
       "id": "hand_L",
       "label": "Linke Hand",
-      "symptoms": []
+      "symptoms": ["arthrose","tendonitis","sprain","carpal_bones"]
     },{
       "id": "upperLeg_R",
       "label": "Rechter Oberschenkel",
-      "symptoms": []
+      "symptoms":["shortening","straining","abductor_dysbalance","adductors_imbalance","muscle_tearing"],
     },{
       "id": "upperLeg_L",
       "label": "Linker Oberschenkel",
-      "symptoms": []
+      "symptoms":["shortening","straining","abductor_dysbalance","adductors_imbalance","muscle_tearing"],
     },{
       "id": "knee_L",
       "label": "Linkes Knie",
-      "symptoms":["meniskus","arthrose","patellatipsyndrom","femorispatelaris",]
+      "symptoms":["meniskus","arthrose","patellatipsyndrom","femorispatelaris","muscular_imbalance"],
+
     },{
       "id": "knee_R",
       "label": "Rechter Knie",
-      "symptoms":["meniskus","arthrose","patellatipsyndrom","femorispatelaris",]
+      "symptoms":["meniskus","arthrose","patellatipsyndrom","femorispatelaris","muscular_imbalance"]
     },{
       "id": "lowerLeg_R",
       "label": "Rechter Unterschenkel",
-      "symptoms":["achilodie","shortening","achillesirritation"]
-    },{
+      "symptoms": ["achillesirritation","muscle_tearing","shortening","muscular_imbalance","calf_cramps","tibialis_anterior_syndrom"]
+    },
+    {
       "id": "lowerLeg_L",
       "label": "Linker Unterschenkel",
-      "symptoms":["achilodie","shortening","achillesirritation"]
+      "symptoms": ["achillesirritation","muscle_tearing","shortening","muscular_imbalance","calf_cramps","tibialis_anterior_syndrom"]
     },{
       "id": "foot_L",
       "label": "Linker Fuß",
-      "symptoms": []
+      "symptoms": ["ruption","achillesirritation","fersensporn","haglund_foot","foot_root_blockade","achilles_irruption","achillesirritation",]
     },{
       "id": "foot_R",
       "label": "Rechter Fuß",
-      "symptoms": []
+      "symptoms": ["ruption","achillesirritation","fersensporn","haglund_foot","foot_root_blockade","achilles_irruption","achillesirritation",]
     },
   ];
 
@@ -186,7 +230,7 @@ class BodySelectorViewService {
           newPart.path = path;
           parts.add(newPart);
         }else{
-          print("Could not find sth for $key");
+          // print("Could not find sth for $key");
         }
       }
     });

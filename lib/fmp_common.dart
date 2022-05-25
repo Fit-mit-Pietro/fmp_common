@@ -10,16 +10,24 @@ export 'ui/widgets/buttons/button_icon_text.dart';
 export 'ui/widgets/buttons/main_icon_button.dart';
 export 'ui/widgets/buttons/tappable.dart';
 export 'ui/widgets/text_views/text_view_key_value.dart' show TextViewKeyValue;
+export 'ui/widgets/filter/filter_widget.dart';
 
 // service
 export 'platform/model_services/user/local_user_service.dart';
+export 'platform/backend_service/exercise_service/exercise_service.dart';
+export 'platform/backend_service/question_service/question_service.dart';
+export 'platform/backend_service/exercise_service/exercise_service.dart';
+export 'platform/backend_service/questionnaire_service/questionnaire_service.dart';
 export 'platform/navigation/routing/routing.dart';
+
 export 'platform/navigation/routing/transition_mode.dart';
-export 'platform/navigation/base_navigator_service.dart';
-export 'platform/navigation/data/base_navigation_global_keys.dart';
-export 'platform/backend_service/backend_service.dart';
+export 'platform/navigation/user_state_navigation_service.dart';
+export 'platform/navigation/data/user_state_navigator_global_keys.dart';
 export 'platform/persistence/secure_storage_service.dart';
 export 'platform/model_services/body_selector_view_service/body_selector_view_service.dart';
+
+// ui services;
+export 'ui/services/dialog/dialog_service.dart';
 
 // validator
 export 'platform/validator/string_validator.dart';

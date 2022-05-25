@@ -21,6 +21,9 @@ class BodySelectorViewModel{
   @JsonKey(ignore: true)
   late Function(BodyPart,TapDownDetails)? onPartTapped;
 
+  @JsonKey(ignore: true)
+  Map<String,List<BodyPartSymptom>> selectedSymptoms = {};
+
   void setOnPartTapped(Function(BodyPart,TapDownDetails) callback){
     this.onPartTapped = callback;
   }
@@ -54,8 +57,6 @@ class BodySelectorViewModel{
     });
   }
 
-  @JsonKey(ignore: true)
-  Map<String,List<BodyPartSymptom>> selectedSymptoms = {};
 
   bool isSymtomSelected(BodyPartSymptom symptom,BodyPart part){
     print(jsonEncode(selectedSymptoms));

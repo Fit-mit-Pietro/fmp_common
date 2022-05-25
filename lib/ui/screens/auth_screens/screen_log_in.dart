@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/model_services/user/local_user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
-import 'package:fmp_common/platform/navigation/base_navigator_service.dart';
+import 'package:fmp_common/platform/navigation/user_state_navigation_service.dart';
 import 'package:fmp_common/platform/validator/string_validator.dart';
 import 'package:fmp_common/ui/screens/auth_screens/screen_register.dart';
 import 'package:fmp_common/ui/widgets/auth_screens/auth_error_text.dart';
@@ -58,7 +58,9 @@ class _ScreenLogInState extends State<ScreenLogIn> {
 
       LocalUserState localUserState = LocalUserService.instance.localUserState;
       if(localUserState != LocalUserState.loggedOut){
-        BaseNavigatorService.instance.navigateAccordingToUserState(localUserState);
+        // wait for log in successfull message
+        await Future.delayed(Duration(milliseconds: 1000));
+        UserStateNavigationService.instance.navigateAccordingToUserState(localUserState);
       }
     }
   }

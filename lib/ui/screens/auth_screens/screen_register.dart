@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/model_services/user/local_user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user.dart';
 import 'package:fmp_common/platform/models/user_service/user_register_result.dart';
+import 'package:fmp_common/platform/navigation/user_state_navigation_service.dart';
 import 'package:fmp_common/platform/validator/string_validator.dart';
 import 'package:fmp_common/ui/screens/auth_screens/screen_log_in.dart';
 import 'package:fmp_common/ui/widgets/auth_screens/auth_error_text.dart';
@@ -61,6 +62,8 @@ class _ScreenRegisterState extends State<ScreenRegister> {
         // keep loading indicator if successful as screen transition will follow
         if(lastRegisterState == UserRegisterResultStatus.successful){
           _logInState = RegisterState.waitingForResult;
+          Future.delayed(Duration(seconds: 1));
+          UserStateNavigationService.instance.navigateAccordingToUserState(LocalUserService.instance.localUserState);
         }else{
           _logInState = RegisterState.noRequestSend;
         }

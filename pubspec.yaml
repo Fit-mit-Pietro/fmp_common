@@ -11,6 +11,16 @@ environment:
 # ----------------------
 
 dependencies:
+
+  fmp_question_service_api:
+    path: ../fmp_question_service_api
+  fmp_questionnaire_service_api:
+    path: ../fmp_questionnaire_service_api
+  fmp_user_property_service_api:
+    path: ../fmp_user_property_service_api
+  fmp_exercise_service_api:
+    path: ../fmp_exercise_service_api
+
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
@@ -25,6 +35,8 @@ dependencies:
   touchable: ^1.0.0
   xml: ^5.3.1
   openapi_generator: ^3.3.0+1
+  uuid: 3.0.6
+
 # ----------------------
 
 dev_dependencies:

@@ -1,7 +1,7 @@
 
 
 
-import 'package:fmp_common/platform/backend_service/backend_service.dart';
+import 'package:fmp_common/platform/backend_service/user_service/user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
 import 'package:fmp_common/platform/models/user_service/user_register_result.dart';
@@ -41,7 +41,7 @@ class LocalUserService{
   }
 
   Future<UserLoginResult> login(String email,String password) async{
-    UserLoginResult result = await BackendService.instance.user.login(email, password);
+    UserLoginResult result = await UserService.instance.login(email, password);
     if(result.status == UserLoginResultStatus.successful){
       await onUserLoggedInSuccessful(result,password);
     }else{
@@ -56,12 +56,14 @@ class LocalUserService{
     if(result.token != null && result.user != null){
 
       userToken = result.token;
+      // print(userToken);
       _localUserState = LocalUserState.loggedIn;
       _user = result.user;
 
       await SecureStorageService.instance.storeValue(SSSKeys.KEY_USER_EMAIL, result.user!.email);
       await SecureStorageService.instance.storeValue(SSSKeys.KEY_USER_PASSWORD, password);
 
+      print("User successfully logged in");
 
     }else{
       _localUserState = LocalUserState.loggedOut;
@@ -73,40 +75,47 @@ class LocalUserService{
     _localUserState = LocalUserState.loggedOut;
   }
 
-  void onUserRegisteredSuccessful(UserRegisterResult result,String password,String email){
-    login(email,password);
+  Future onUserRegisteredSuccessful(UserRegisterResult result,String password,String email) async{
+    await login(email,password);
   }
 
-  void onUserRegisteredFailed(UserRegisterResult result){
+  Future onUserRegisteredFailed(UserRegisterResult result) async{
 
   }
 
-  Future delete() async{
+  Future<LocalUserState> delete() async{
 
     await logOut();
 
     if(userToken != null){
-      await BackendService.instance.user.delete(userToken!);
+      await UserService.instance.delete(userToken!);
     }else{
       print("Cant delete user as token is null");
     }
+
+    return _localUserState;
+
   }
 
-  Future logOut() async{
+  Future<LocalUserState> logOut() async{
     _localUserState = LocalUserState.loggedOut;
 
     await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_EMAIL);
     await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_PASSWORD);
 
+    return _localUserState;
   }
 
 
   Future<UserRegisterResult> register(User user,String userPassword) async {
-    UserRegisterResult result = await BackendService.instance.user.register(user, userPassword);
+    UserRegisterResult result = await UserService.instance.register(user, userPassword);
     if(result.status == UserRegisterResultStatus.successful){
-      onUserRegisteredSuccessful(result,userPassword,user.email);
+      print("Register successful");
+      await onUserRegisteredSuccessful(result,userPassword,user.email);
     }else{
-      onUserRegisteredFailed(result);
+      print("Register failed");
+
+      await onUserRegisteredFailed(result);
     }
     return result;
   }
