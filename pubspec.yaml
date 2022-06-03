@@ -55,8 +55,8 @@ flutter:
   assets:
     - assets/img/fmp_logo.png
     - assets/img/undraw_finish_line.png
-    - assets/img/body_front_svg.svg
-    - assets/img/body_back_svg.svg
+
+
 
   fonts:
     - family: LexendDeca

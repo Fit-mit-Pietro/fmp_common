@@ -10,7 +10,7 @@ extension ApiFilledQuestionExtension on API.FilledQuestion{
 
   FilledQuestion toServiceQuestion() => FilledQuestion(
       id: this.id,
-      userProperty: this.userProperty.toServiceProperty(),
+      userProperty: this.userProperty.fromServiceProperty(),
       text: this.text
   );
 }
@@ -19,7 +19,7 @@ extension ServiceFilledQuestionExtension on FilledQuestion{
 
   static FilledQuestion fromApiQuestion(API.FilledQuestion question) => FilledQuestion(
       id: question.id,
-      userProperty: question.userProperty.toServiceProperty(),
+      userProperty: question.userProperty.fromServiceProperty(),
       text: question.text
   );
 

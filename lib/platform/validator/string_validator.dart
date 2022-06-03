@@ -46,7 +46,7 @@ class StringValidator{
     return null;
   }
 
-  static String? validateNumberParsableNotNull(String? number){
+  static String? validateIntParsableNotNull(String? number,{int? minValue,int? maxValue}){
     if(number == null || number.isEmpty){
       return "Bitte gebe einen Wert an";
     }
@@ -55,6 +55,20 @@ class StringValidator{
     if(i == null){
       return "Dieser Wert ist nicht gültig";
     }
+
+    if(minValue != null) {
+      if(i < minValue){
+        return "Wert muss mindestens $minValue sein";
+      }
+    }
+
+    if(maxValue != null) {
+      if(i > maxValue){
+        return "Wert darf höchstens $maxValue sein";
+      }
+    }
+
+
     return null;
   }
 

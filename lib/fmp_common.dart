@@ -11,6 +11,7 @@ export 'ui/widgets/buttons/main_icon_button.dart';
 export 'ui/widgets/buttons/tappable.dart';
 export 'ui/widgets/text_views/text_view_key_value.dart' show TextViewKeyValue;
 export 'ui/widgets/filter/filter_widget.dart';
+export 'ui/widgets/body_map_widget/switchable_body_canvas.dart';
 
 // service
 export 'platform/model_services/user/local_user_service.dart';

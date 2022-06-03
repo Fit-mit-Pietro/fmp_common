@@ -26,56 +26,56 @@ class BodySelectorViewService {
     { "id": "neck_stiffness","label": "Steifheit" },
     { "id": "discprolapse","label": "Bandscheibenvorfall" },
     { "id": "tension","label": "Verspannungen" },
-    { "id": "muscular_imbalance","label": "Muskuläres Ungleichgewicht / Dysbalance" },
-    { "id": "movement_restrictions","label": "Bewegungseinschränkungen" },
-    { "id": "radiation_arm","label": "Ausstrahlung oder kribbeln in den Armen" },
-    { "id": "pain_chest","label": "Schmerzen zwischen den Schulterblättern" },
-    { "id": "pain_thorax","label": "Ringförmige ausstrahlende schmerzen in den Brustkorb und Rippenregionen (Thorax)" },
+    { "id": "muscular_imbalance","label": "Muskuläres\nUngleichgewicht /\nDysbalance" },
+    { "id": "movement_restrictions","label": "Bewegungs-\neinschränkungen" },
+    { "id": "radiation_arm","label": "Ausstrahlung oder \nkribbeln in den\nArmen" },
+    { "id": "pain_chest","label": "Schmerzen zwischen\nden Schulterblättern" },
+    { "id": "pain_thorax","label": "Ringförmige ausstrahlende \nSchmerzen in den \nBrustkorb und \nRippenregionen (Thorax)" },
     { "id": "blockade","label": "Blockaden HWS" },
     { "id": "impingmentsyndrom","label": "impingment Syndrom" },
     { "id": "frozenshoulder","label": "Frozen shoulder" },
     { "id": "rotatorcuff","label": "Rotatoren Manschette" },
     { "id": "arthrose","label": "Arthrose" },
-    { "id": "tendonitis","label": "Sehnenscheidenentzündung" },
-    { "id": "sprain","label": "Verstauchung / Contusion" },
-    { "id": "carpal_bones","label": "Handwurzelknochen / Schmerzen am Daumengelenk" },
+    { "id": "tendonitis","label": "Sehnenscheiden-\nentzündung" },
+    { "id": "sprain","label": "Verstauchung /\nContusion" },
+    { "id": "carpal_bones","label": "Handwurzelknochen /\nSchmerzen am \nDaumengelenk" },
     { "id": "tennisarm","label": "Tennisarm" },
     { "id": "golfarm","label": "Golfer Ellenbogen" },
     { "id": "rotatorcuff","label": "Rotatoren Manschette" },
-    { "id": "terninopathie","label": "Terninopathie - Überlastung der Sehnen der Hand" },
+    { "id": "terninopathie","label": "Terninopathie - \nÜberlastung der\nSehnen der Hand" },
     { "id": "ischialgia","label": "Ischialgie" },
-    { "id": "periformissyndrom","label": "Periformis Syndrom" },
-    { "id": "hip_stiffness","label": "Verkürzung und Steifheit der Hüfte" },
+    { "id": "periformissyndrom","label": "Periformis\nSyndrom" },
+    { "id": "hip_stiffness","label": "Verkürzung und \nSteifheit der \nHüfte" },
     { "id": "igs_blockade","label": "ISG Blockade" },
     { "id": "meniskus","label": "Meniskus" },
     { "id": "arthrose","label": "Arthrose" },
-    { "id": "patellatipsyndrom","label": "Patella spitzen Syndrom" },
-    { "id": "femorispatelaris","label": "schmerzen hinter der Kniescheibe (Femoris Patelaris)" },
+    { "id": "patellatipsyndrom","label": "Patella spitzen\nSyndrom" },
+    { "id": "femorispatelaris","label": "Schmerzen hinter \nder Kniescheibe\n(Femoris Patelaris)" },
     { "id": "shortening","label": "Verkürzung" },
-    { "id": "achillesirritation","label": "Achilis Sehnenreizung" },
-    { "id": "achilles_irruption","label": "Achilissehnen ruptur/Zerreißung" },
-    { "id": "foot_root_blockade","label": "Fuß-Wurzel Blockade" },
+    { "id": "achillesirritation","label": "Achilles \nSehnenreizung" },
+    { "id": "achilles_irruption","label": "Achillessehnen \nRuptur" },
+    { "id": "foot_root_blockade","label": "Fuß-Wurzel \nBlockade" },
     { "id": "haglund_foot","label": "Haglund-Ferse" },
     { "id": "fersensporn","label": "Fersensporn" },
-    { "id": "achillesirritation","label": "Achilis Sehnenreizung" },
-    { "id": "ruption","label": "Bänderriss / Stabilisierung nach Bänderriss" },
-    { "id": "jaw_dislocations","label": "Kiefergelenk Verrenkungen" },
-    { "id": "trigeminus_neuralgie","label": "Trigeminus-Neuralgie" },
+    { "id": "achillesirritation","label": "Achilis \nSehnenreizung" },
+    { "id": "ruption","label": "Bänderriss /\nStabilisierung nach\nBänderriss" },
+    { "id": "jaw_dislocations","label": "Kiefergelenk\nVerrenkungen" },
+    { "id": "trigeminus_neuralgie","label": "Trigeminus-\nNeuralgie" },
     { "id": "migraine","label": "Migräne" },
-    { "id": "head_neck_tension","label": "Spannungs Kopfschmerzen / durch Nacken Verspannungen," },
-    { "id": "austrahlung_beine_gesaes","label": "Austrahlung und kribbeln in den Beinen oder und ins Gesäß" },
+    { "id": "head_neck_tension","label": "Spannungs \nKopfschmerzen /\ndurch Nacken\nVerspannungen," },
+    { "id": "austrahlung_beine_gesaes","label": "Ausstrahlung und\nKribbeln in den\nBeinen oder\nund ins Gesäß" },
     { "id": "piriformis","label": "Piriformis" },
     { "id": "wirbelgleiten","label": "Wirbelgleiten" },
     { "id": "ischias_syndrom","label": "Ischias Syndrom" },
 
-    { "id": "muscle_tearing","label": "Muskelfaserriss / Zerrung" },
-    { "id": "adductors_imbalance","label": "Adductoren Dysbalance" },
-    { "id": "abductor_dysbalance","label": "Abduktoren Dysbalance" },
+    { "id": "muscle_tearing","label": "Muskelfaserriss /\nZerrung" },
+    { "id": "adductors_imbalance","label": "Adductoren\nDysbalance" },
+    { "id": "abductor_dysbalance","label": "Abduktoren\nDysbalance" },
     { "id": "straining","label": "Zerrung" },
 
-    { "id": "tibialis_anterior_syndrom","label": "Tibialis Anterior Syndrom" },
-    { "id": "calf_cramps","label": "Waden Krämpfe (oft Nachts)" },
-    { "id": "verkürzung_nackenmuskulatur","label": "Verkürzung nackenmuskulatur und Trapezius (Tastaturhaltung)" },
+    { "id": "tibialis_anterior_syndrom","label": "Tibialis\nAnterior Syndrom" },
+    { "id": "calf_cramps","label": "Waden Krämpfe\n(oft Nachts)" },
+    { "id": "verkürzung_nackenmuskulatur","label": "Verkürzung Nacken-\nmuskulatur und\nTrapezius\n(Tastaturhaltung)" },
 
   ];
 
@@ -161,7 +161,7 @@ class BodySelectorViewService {
 
     },{
       "id": "knee_R",
-      "label": "Rechter Knie",
+      "label": "Rechtes Knie",
       "symptoms":["meniskus","arthrose","patellatipsyndrom","femorispatelaris","muscular_imbalance"]
     },{
       "id": "lowerLeg_R",
@@ -205,8 +205,8 @@ class BodySelectorViewService {
       availableBodyParts.add(symptom);
     });
 
-    List<BodyPart> frontParts = await getBodyPartsFromSvg("assets/img/body_front_svg.svg", availableBodyParts);
-    List<BodyPart> backParts = await getBodyPartsFromSvg("assets/img/body_back_svg.svg", availableBodyParts);
+    List<BodyPart> frontParts = await getBodyPartsFromSvg("assets/img/body_map/body_front_svg.svg", availableBodyParts);
+    List<BodyPart> backParts = await getBodyPartsFromSvg("assets/img/body_map/body_back_svg.svg", availableBodyParts);
 
     return BodySelectorViewModel(front: frontParts, back: backParts);
   }

@@ -103,18 +103,18 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                       ),
                       const SizedBox(height: 32,),
                       Text(
-                        "Welcome,",
+                        "Willkommen,",
                         style: Theme.of(context).textTheme.headline2
                       ),
                       Text(
-                        "Log in to continue.",
+                        "Bitte melden Sie sich an.",
                         style: Theme.of(context).textTheme.headline3
                       ),
                       const SizedBox(height: 8,),
                       Row(
                         children:  [
                           const Text(
-                            "If you are new / ",
+                            "Sie sind neu? / ",
                             style: TextStyle(
                                 fontFamily: 'LexendDeca',
                                 fontWeight: FontWeight.w400,
@@ -126,7 +126,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                           TextButton(
                             onPressed: _onSwitchToRegisterPressed,
                             child: const Text(
-                              "Create Account",
+                              "Profil anlegen",
                               style: TextStyle(
                                   fontFamily: 'LexendDeca',
                                   fontWeight: FontWeight.w400,
@@ -170,7 +170,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                     ),
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: 'Password',
+                      hintText: 'Passwort',
                     ),
                     validator: StringValidator.validatePassword,
                   ),
@@ -186,7 +186,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                     width: double.infinity,
                     alignment: Alignment.center,
                     child: const Text(
-                      "Forgot Password?",
+                      "Passwort vergessen?",
                       style: TextStyle(
                           fontFamily: 'Quicksand',
                           fontWeight: FontWeight.w400,

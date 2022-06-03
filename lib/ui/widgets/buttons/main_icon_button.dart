@@ -19,16 +19,16 @@ class MainIconButton extends StatelessWidget {
       height: WidgetData.MAIN_ICON_BUTTON_SIZE,
       child: Tappable(
         onTap: onTap,
-        radius: 16,
+        radius: 8,
         child: Container(
           width: WidgetData.MAIN_ICON_BUTTON_SIZE,
           height: WidgetData.MAIN_ICON_BUTTON_SIZE,
           decoration: BoxDecoration(
             color: Color(0xFBFBFBFF),
-            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderRadius: BorderRadius.all(Radius.circular(9)),
             border: Border.all(
               width: 1,
-              color: Color(0xD9D9D9FF)
+              color: Color(0xD9E8E8E8)
           )
           ),
           alignment: Alignment.center,

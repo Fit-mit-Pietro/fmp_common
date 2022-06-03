@@ -114,7 +114,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
     }
 
     return Container(
-      height: 128,
+      height: 160,
       width: double.infinity,
       decoration: const BoxDecoration(
           color: Color.fromRGBO(240, 240, 240, 1),

@@ -10,7 +10,9 @@ extension UserPropertyParser on UserProperty {
     id: element.id,
     propertyType: fromAPIType( element.type),
     propertyOptions: ObjectToMap(element.propertyOptions),
-    unit: element.unit
+    unit: element.unit,
+    minValue: element.minValue,
+    maxValue: element.maxValue,
   );
 
   static Map<String,String>? ObjectToMap(Object object){
@@ -32,7 +34,9 @@ extension UserPropertyParser on UserProperty {
     type: fromServiceType(this.propertyType),
     id: this.id,
     propertyOptions: this.propertyOptions,
-    unit: this.unit
+    unit: this.unit,
+    minValue: this.minValue,
+    maxValue: this.maxValue,
   );
 
   static API.UserPropertyTypeEnum fromServiceType(UserPropertyType type){

@@ -5,18 +5,25 @@ part of questionnaire_service;
 
 extension ApiUserPropertyExtension on API.UserProperty{
 
-  static API.UserProperty fromServiceProperty(UserProperty userProperty) => API.UserProperty(
+  static API.UserProperty toServiceProperty(UserProperty userProperty) => API.UserProperty(
     label: userProperty.label,
     type: fromServiceType(userProperty.propertyType),
     id: userProperty.id,
     propertyOptions: userProperty.propertyOptions,
+    unit: userProperty.unit,
+    minValue: userProperty.minValue,
+    maxValue: userProperty.maxValue,
+
   );
 
-  UserProperty toServiceProperty() => UserProperty(
-      id: this.id,
-      propertyType: fromAPIType(this.type),
-      label: this.label,
-      propertyOptions: ObjectToMap(this.propertyOptions)
+  UserProperty fromServiceProperty() => UserProperty(
+    id: this.id,
+    propertyType: fromAPIType(this.type),
+    label: this.label,
+    propertyOptions: ObjectToMap(this.propertyOptions),
+    unit: this.unit,
+    minValue: this.minValue,
+    maxValue: this.maxValue,
   );
 
   static Map<String,String>? ObjectToMap(Object object){
@@ -62,9 +69,9 @@ extension ApiUserPropertyExtension on API.UserProperty{
 extension ServiceUserPropertyExtension on UserProperty{
 
   static UserProperty fromAPIProperty(API.UserProperty userProperty)
-  => userProperty.toServiceProperty();
+  => userProperty.fromServiceProperty();
 
   API.UserProperty toAPIProperty(){
-    return ApiUserPropertyExtension.fromServiceProperty(this);
+    return ApiUserPropertyExtension.toServiceProperty(this);
   }
 }

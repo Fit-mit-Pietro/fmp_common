@@ -108,18 +108,18 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                       ),
                       const SizedBox(height: 32,),
                       Text(
-                          "Welcome,",
+                          "Willkommen,",
                           style: Theme.of(context).textTheme.headline2
                       ),
                       Text(
-                          "Create an account.",
+                          "Profil erstellen.",
                           style: Theme.of(context).textTheme.headline3
                       ),
                       const SizedBox(height: 8,),
                       Row(
                         children:  [
                           const Text(
-                            "You got an account? / ",
+                            "Sie haben ein Profil? / ",
                             style: TextStyle(
                                 fontFamily: 'LexendDeca',
                                 fontWeight: FontWeight.w400,
@@ -173,7 +173,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                       fontWeight: FontWeight.w500,
                     ),
                     decoration: const InputDecoration(
-                        hintText: 'Username'
+                        hintText: 'Benutzername'
                     ),
                     validator: StringValidator.validateUsername,
 
@@ -188,7 +188,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                           fontWeight: FontWeight.w500,
                         ),
                         decoration: const InputDecoration(
-                            hintText: 'First Name'
+                            hintText: 'Vorname'
                         ),
                         validator: StringValidator.validateFirstName,
 
@@ -203,7 +203,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                           fontWeight: FontWeight.w500,
                         ),
                         decoration: const InputDecoration(
-                            hintText: 'Last Name'
+                            hintText: 'Nachname'
                         ),
                         validator: StringValidator.validateLastName,
 
@@ -220,7 +220,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                     ),
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: 'Password',
+                      hintText: 'Passwort',
                     ),
                     validator: StringValidator.validatePassword,
                   ),
@@ -235,7 +235,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                     width: double.infinity,
                     alignment: Alignment.center,
                     child: const Text(
-                      "Forgot Password?",
+                      "Passwort vergessen?",
                       style: TextStyle(
                           fontFamily: 'Quicksand',
                           fontWeight: FontWeight.w400,
