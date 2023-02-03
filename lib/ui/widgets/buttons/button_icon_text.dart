@@ -19,17 +19,10 @@ class ButtonIconText extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 18
-            ),
           ),
           SizedBox(width: 12,),
           Icon(
             icon,
-            color: Colors.black,
           )
         ],
       ),

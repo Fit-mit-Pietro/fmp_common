@@ -24,15 +24,15 @@ class MainIconButton extends StatelessWidget {
           width: WidgetData.MAIN_ICON_BUTTON_SIZE,
           height: WidgetData.MAIN_ICON_BUTTON_SIZE,
           decoration: BoxDecoration(
-            color: Color(0xFBFBFBFF),
+            color:Theme.of(context).textTheme.headline1!.color!.withOpacity(0.1),
             borderRadius: BorderRadius.all(Radius.circular(9)),
             border: Border.all(
               width: 1,
-              color: Color(0xD9E8E8E8)
+              color:Theme.of(context).textTheme.headline1!.color!.withOpacity(0.15),
           )
           ),
           alignment: Alignment.center,
-          child:  Icon(iconData,color: Colors.black,size: WidgetData.MAIN_ICON_BUTTON_SIZE* 0.5,),
+          child:  Icon(iconData,color: Theme.of(context).textTheme.headline1!.color! ,size: WidgetData.MAIN_ICON_BUTTON_SIZE* 0.5,),
 
         ),
       ),

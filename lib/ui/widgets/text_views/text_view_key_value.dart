@@ -15,7 +15,7 @@ class TextViewKeyValue extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(textKey,style: Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 16),),
-        Container(height: 1,color: Colors.black12,margin: EdgeInsets.symmetric(vertical: 4),),
+        Container(height: 1,color: Theme.of(context).dividerColor,margin: EdgeInsets.symmetric(vertical: 4),),
         Text(value,style: Theme.of(context).textTheme.bodyText1,),
       ],
     );

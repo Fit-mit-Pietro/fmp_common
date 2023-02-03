@@ -4,7 +4,7 @@
 part of user_property_service;
 
 
-enum UserPropertyType {BOOL,INT,FULL_TEXT,BODY_MAP,ENUM}
+enum UserPropertyType {BOOL,INT,FULL_TEXT,BODY_MAP,ENUM,DATES_IN_WEEK}
 
 class UserPropertyTypeMapper{
   static Map<String,String> labelMap = {
@@ -13,6 +13,7 @@ class UserPropertyTypeMapper{
     "FULL_TEXT": "Volltext",
     "BODY_MAP": "Körperkarte",
     "ENUM": "Auswahlmöglichkeit",
+    "DATES_IN_WEEK": "Termine in der Woche"
   };
 
   static Map<UserPropertyType,String> keyMap = {
@@ -21,6 +22,8 @@ class UserPropertyTypeMapper{
     UserPropertyType.FULL_TEXT: "FULL_TEXT",
     UserPropertyType.BODY_MAP: "BODY_MAP",
     UserPropertyType.ENUM: "ENUM",
+    UserPropertyType.DATES_IN_WEEK: "DATES_IN_WEEK"
+
   };
 
   static UserPropertyType fromKey(String key){
@@ -69,7 +72,11 @@ class UserProperty implements Identifiable{
   String getId() => this.id;
 
   @override
+  String getLabel() => this.label;
+
+  @override
   String toString() {
     return 'UserProperty{id: $id, label: $label, propertyType: $propertyType, propertyOptions: $propertyOptions, unit: $unit, minValue: $minValue, maxValue: $maxValue}';
   }
 }
+

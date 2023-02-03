@@ -46,6 +46,8 @@ extension ServiceFieldParser on Field {
         return ExerciseApi.FieldTypeEnum.BODY_MAP;
       case FieldValueType.enumValue:
         return ExerciseApi.FieldTypeEnum.ENUM;
+      case FieldValueType.datesInWeek:
+        return ExerciseApi.FieldTypeEnum.DATES_IN_WEEK;
     }
   }
 

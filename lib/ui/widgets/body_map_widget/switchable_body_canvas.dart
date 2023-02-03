@@ -105,11 +105,11 @@ class _SwitchableBodyCanvasState extends State<SwitchableBodyCanvas> with Single
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: selected? Color(0xFFEFEFEF) : Colors.transparent,
+            color: selected? Theme.of(context).textTheme.headline1!.color!.withAlpha(30): Colors.transparent,
             borderRadius: BorderRadius.circular(8)
         ),
         child: Text(label,style: TextStyle(
-            color: selected? Colors.black87 : Colors.black54
+          color: Theme.of(context).textTheme.headline1!.color
         ),),
       ),
     );

@@ -1,7 +1,7 @@
 
 part of filter_lib;
 
-enum FieldValueType {bool,int,text,bodyMap,enumValue}
+enum FieldValueType {bool,int,text,bodyMap,enumValue,datesInWeek}
 
 class Field{
   FieldValueType type;
@@ -47,6 +47,8 @@ extension UserPropertyFieldExtension on UserProperty{
         return FieldValueType.bodyMap;
       case UserPropertyType.ENUM:        
         return FieldValueType.enumValue;
+      case UserPropertyType.DATES_IN_WEEK:
+        return FieldValueType.datesInWeek;
     }
   }
   

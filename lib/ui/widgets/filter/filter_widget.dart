@@ -11,9 +11,12 @@ import 'package:fmp_common/ui/widgets/filter/filter_widget_functions.dart';
 class FilterWidget extends StatefulWidget {
 
   Filter filter;
+
+  bool showFieldsDropdown;
+
   Function? onFilterChanged;
 
-  FilterWidget({Key? key,required this.filter,this.onFilterChanged}) : super(key: key);
+  FilterWidget({Key? key,required this.filter,this.onFilterChanged, this.showFieldsDropdown = true}) : super(key: key);
 
   @override
   _FilterWidgetState createState() => _FilterWidgetState();
@@ -57,63 +60,63 @@ class _FilterWidgetState extends State<FilterWidget> with FilterWidgetFunctions{
 
     return Row(
       children: [
-        Expanded(
-          flex: 1,
-          child: FilterWidgetExpandableContainer(
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<Field>(
-                isExpanded: true,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(fontSize: 18),
-                value: fields.firstWhere((element) => element.id == widget.filter.getSelectedField().id),
-                
-                icon: const Icon(Icons.keyboard_arrow_down),
-                elevation: 16,
-                onChanged:fields.length > 1 ?
-                    _onFieldChanged : null,
-                items: fields.map<
-                    DropdownMenuItem<Field>>((Field value) {
-                  return DropdownMenuItem<Field>(
-                      value: value,
-                      child: DropDownChild(
-                        text: value.label
-                      )
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(width: 8,),
-         FilterWidgetExpandableContainer(
+        if (widget.showFieldsDropdown)
+          Expanded(
+            flex: 1,
+            child: FilterWidgetExpandableContainer(
               child: DropdownButtonHideUnderline(
-                child: DropdownButton<FilterOperation>(
+                child: DropdownButton<Field>(
+                  isExpanded: true,
                   style: Theme
                       .of(context)
                       .textTheme
                       .bodyText1
-                      ?.copyWith(fontSize: 18),
-                  value: widget.filter.selectedFilterOperation,
+                      ?.copyWith(fontSize: 16),
+                  value: fields.firstWhere((element) => element.id == widget.filter.getSelectedField().id),
+
                   icon: const Icon(Icons.keyboard_arrow_down),
                   elevation: 16,
-
-                  onChanged: _onFilterOperationChanged,
-                  items: widget.filter.getAvailableOperations().map<
-                      DropdownMenuItem<FilterOperation>>((FilterOperation value) {
-                    return DropdownMenuItem<FilterOperation>(
+                  onChanged:fields.length > 1 ?
+                      _onFieldChanged : null,
+                  items: fields.map<
+                      DropdownMenuItem<Field>>((Field value) {
+                    return DropdownMenuItem<Field>(
                         value: value,
                         child: DropDownChild(
-                          text: getLabelOfOperation(value),
+                          text: value.label
                         )
                     );
                   }).toList(),
                 ),
               ),
             ),
+          ),
+        if(widget.showFieldsDropdown)SizedBox(width: 8,),
+        FilterWidgetExpandableContainer(
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<FilterOperation>(
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(fontSize: 16),
+              value: widget.filter.selectedFilterOperation,
+              icon: const Icon(Icons.keyboard_arrow_down),
+              elevation: 16,
 
+              onChanged: _onFilterOperationChanged,
+              items: widget.filter.getAvailableOperations().map<
+                  DropdownMenuItem<FilterOperation>>((FilterOperation value) {
+                return DropdownMenuItem<FilterOperation>(
+                    value: value,
+                    child: DropDownChild(
+                      text: getLabelOfOperation(value),
+                    )
+                );
+              }).toList(),
+            ),
+          ),
+        ),
         SizedBox(width: 8,),
         Expanded(
           flex: 1,
@@ -140,7 +143,7 @@ class DropDownChild extends StatelessWidget {
     return Tooltip(
       waitDuration: Duration(milliseconds: 1500),
       message: text,
-      child: Text(text,overflow: TextOverflow.clip,maxLines: 1),
+      child: Text(text,overflow: TextOverflow.ellipsis,maxLines: 1),
 
     );
   }

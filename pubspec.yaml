@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   json_annotation: ^4.3.0  # flutter pub run build_runner build
+  video_player: 2.4.7
 
   #for password cache
   flutter_secure_storage: ^5.0.2

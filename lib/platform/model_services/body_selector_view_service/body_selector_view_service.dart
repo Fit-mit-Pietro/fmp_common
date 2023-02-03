@@ -67,12 +67,10 @@ class BodySelectorViewService {
     { "id": "piriformis","label": "Piriformis" },
     { "id": "wirbelgleiten","label": "Wirbelgleiten" },
     { "id": "ischias_syndrom","label": "Ischias Syndrom" },
-
     { "id": "muscle_tearing","label": "Muskelfaserriss /\nZerrung" },
     { "id": "adductors_imbalance","label": "Adductoren\nDysbalance" },
     { "id": "abductor_dysbalance","label": "Abduktoren\nDysbalance" },
     { "id": "straining","label": "Zerrung" },
-
     { "id": "tibialis_anterior_syndrom","label": "Tibialis\nAnterior Syndrom" },
     { "id": "calf_cramps","label": "Waden Krämpfe\n(oft Nachts)" },
     { "id": "verkürzung_nackenmuskulatur","label": "Verkürzung Nacken-\nmuskulatur und\nTrapezius\n(Tastaturhaltung)" },

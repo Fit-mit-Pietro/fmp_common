@@ -30,4 +30,6 @@ abstract class IExerciseService implements ICRUDTemplateService<Exercise>{
   Future<List<ExercisePropertyLink>> getLinksOfUserProperty(String userPropertyId);
 
   Future<List<ExercisePropertyLink>> getLinksOfExercise(String exerciseId);
+
+  Future<String> uploadFile(String id, MultipartFile file);
 }

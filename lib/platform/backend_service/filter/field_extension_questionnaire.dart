@@ -46,6 +46,8 @@ extension QuestionnaireServiceFieldParser on Field {
         return QuestionnaireApi.FieldTypeEnum.BODY_MAP;
       case FieldValueType.enumValue:
         return QuestionnaireApi.FieldTypeEnum.ENUM;
+      case FieldValueType.datesInWeek:
+        return QuestionnaireApi.FieldTypeEnum.DATES_IN_WEEK;
     }
   }
 

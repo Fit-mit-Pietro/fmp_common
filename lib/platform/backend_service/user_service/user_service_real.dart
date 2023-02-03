@@ -50,7 +50,7 @@ class _UserServiceReal implements IUserService{
 
     String username = userEmail;
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$userPassword'));
-
+    print("Starting to log in");
     try{
       http.Response response =  await http.get(
         _getUriForEndpoint(_config.USER_SERVICE_ENDPOINT_USER_LOG_IN),
@@ -58,7 +58,7 @@ class _UserServiceReal implements IUserService{
           HttpHeaders.authorizationHeader: basicAuth,
         },
       ).timeout(const Duration(milliseconds: 15000));
-
+      print("Response status code: ${response.statusCode}");
       if(response.statusCode == 400){
         return UserLoginResult(UserLoginResultStatus.userCorrupted);
       }if(response.statusCode == 200){
@@ -67,7 +67,10 @@ class _UserServiceReal implements IUserService{
 
         Map<String,dynamic> userJson = jsonBody[Keys.KEY_HTTP_BODY_USER];
         userJson[Keys.USER_EMAIL] = userEmail;
+
+        print("User json: $userJson");
         User user = User.fromJson(userJson);
+        print("User: ${user.toJson()}");
 
         Map<String,dynamic> tokenJson = jsonBody[Keys.KEY_HTTP_BODY_TOKEN];
         String token = tokenJson[Keys.KEY_TOKEN_ACCESS_TOKEN];
@@ -98,13 +101,21 @@ class _UserServiceReal implements IUserService{
     String username = user.email;
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$userPassword'));
 
+    Map<String,String> json = {
+      "username": user.username,
+      "familyname": user.familyName,
+      "firstname": user.firstName
+    };
+
     try{
       http.Response response =  await http.post(
           _getUriForEndpoint(_config.USER_SERVICE_ENDPOINT_USER_REGISTER),
           headers: {
             HttpHeaders.authorizationHeader: basicAuth,
+            HttpHeaders.contentTypeHeader: 'application/json',
           },
-          body: user.toJson()
+          body: jsonEncode(json)
+
       ).timeout(Duration(milliseconds: 10000));
 
       if(response.statusCode == 400){

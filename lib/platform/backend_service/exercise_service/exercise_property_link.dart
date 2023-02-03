@@ -29,5 +29,9 @@ class ExercisePropertyLink implements Identifiable{
 
   @override
   String getId() => id;
+
+  @override
+  String getLabel() => this.id;
+
 }
 

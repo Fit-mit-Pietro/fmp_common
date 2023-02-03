@@ -96,4 +96,9 @@ class _ExerciseServiceReal implements IExerciseService{
     return link;
   }
 
+  @override
+  Future<String> uploadFile(String id, MultipartFile file) async{
+    API.VideoUploadResponse response = await _exerciseApiInstance.uploadFile(id, file: file);
+    return response.result.videoUrl;
+  }
 }

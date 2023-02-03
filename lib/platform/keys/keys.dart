@@ -40,4 +40,11 @@ class Keys{
   static const String QUERY_GENDER = "gender";
   static const String QUERY_GENERAL_FIELDS = "general";
   static const String QUERY_AGE = "age";
+
+
+  static const String WEEK_DAY = "week_day";
+  static const String HOUR = "hour";
+  static const String MINUTE = "minute";
+  static const String DURATION = "duration";
+
 }

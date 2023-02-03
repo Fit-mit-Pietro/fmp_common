@@ -63,7 +63,7 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
       items: [
         PopupMenuItem(
             enabled: false,
-            child: Text(bodyPart.label,style: TextStyle(fontWeight: FontWeight.w700).copyWith(color: Colors.black),)
+            child: Text(bodyPart.label, style: Theme.of(context).textTheme.headline3)
         ),
 
         if(bodyPart.possibleSymptomKeys.isNotEmpty )
@@ -77,6 +77,7 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
   PopupMenuItem<dynamic> _buildItem(BodyPartSymptom symptom,BodyPart bodyPart,Function update) {
     return PopupMenuItem(
       enabled: false,
+
       child: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
         return Tappable(
@@ -105,7 +106,7 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
                 ),
               ),
               SizedBox(width: 12,),
-              Flexible(child: Text(symptom.label,style: TextStyle(color: Colors.black),),)
+              Flexible(child: Text(symptom.label,style: Theme.of(context).textTheme.bodyText1,),)
             ],
           ));
         }),

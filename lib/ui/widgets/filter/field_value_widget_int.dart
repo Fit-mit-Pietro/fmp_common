@@ -45,6 +45,7 @@ class _FieldWidgetValueIntState extends State<FieldWidgetValueInt> {
       child: TextFormField(
         keyboardType: TextInputType.number,
         maxLines: 1,
+        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
         validator: StringValidator.validateIntParsableNotNull,
         decoration: InputDecoration(
           border: OutlineInputBorder(

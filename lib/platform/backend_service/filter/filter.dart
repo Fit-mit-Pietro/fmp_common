@@ -55,7 +55,6 @@ class Filter{
     Field? selectedField = getSelectedField();
     FieldValueType type = selectedField.type;
     switch(type){
-
       case FieldValueType.bool:
         return [
           FilterOperation.equal,
@@ -84,6 +83,8 @@ class Filter{
           FilterOperation.equal,
           FilterOperation.notEqual,
         ];
+      case FieldValueType.datesInWeek:
+        return [];
     }
   }
 

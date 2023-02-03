@@ -37,7 +37,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
 
   void _onLoginButtonPressed() async{
     if (_formKey.currentState!.validate()){
-      String email = emailTextController.text;
+      String email = emailTextController.text.trim();
       String password = passwordTextController.text;
 
       setState(() {
@@ -130,7 +130,6 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                               style: TextStyle(
                                   fontFamily: 'LexendDeca',
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
                                   fontSize: 16
                               ),
                             ),
@@ -190,7 +189,6 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                       style: TextStyle(
                           fontFamily: 'Quicksand',
                           fontWeight: FontWeight.w400,
-                          color: Colors.black,
                           fontSize: 12
                       ),
                     ),
@@ -217,7 +215,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
         return Container(
           height: 40,
           width: 40,
-          child: const Center(child: CircularProgressIndicator(color: Colors.black,))
+          child: const Center(child: CircularProgressIndicator())
         );
     }
   }

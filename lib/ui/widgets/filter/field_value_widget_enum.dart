@@ -28,8 +28,8 @@ class FieldValueWidgetEnum extends StatelessWidget {
     return FilterWidgetExpandableContainer(
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),
+          isExpanded: true,
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
             value: value,
             icon: const Icon(Icons.keyboard_arrow_down),
             elevation: 16,

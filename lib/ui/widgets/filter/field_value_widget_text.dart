@@ -33,6 +33,7 @@ class _FieldWidgetValueTextState extends State<FieldWidgetValueText> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: 1,
+      style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black.withOpacity(0.08), width: 1),

@@ -101,4 +101,10 @@ class _ExerciseServiceMock
     return objects;
   }
 
+  @override
+  Future<String> uploadFile(String id, MultipartFile file) {
+    // TODO: implement uploadFile
+    throw UnimplementedError();
+  }
+
 }

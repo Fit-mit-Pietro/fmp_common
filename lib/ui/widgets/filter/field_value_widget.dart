@@ -75,12 +75,13 @@ class FieldValueWidget extends StatelessWidget {
         }catch(e){
           print(e);
         }
-
         return FieldValueWidgetEnum(
           onValueChanged: this.onValueChanged,
           value: _value,
           enumOptions: field.enumValues!,
         );
+      case FieldValueType.datesInWeek:
+        return Text("Nicht unterstützt!");
     }
   }
 }

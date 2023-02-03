@@ -49,10 +49,10 @@ class _ScreenRegisterState extends State<ScreenRegister> {
       });
 
       User user = User(
-          familyName: lastNameTextController.text,
-          email: emailTextController.text,
-          firstName: firstNameTextController.text,
-          username: usernameTextController.text
+          familyName: lastNameTextController.text.trim(),
+          email: emailTextController.text.trim(),
+          firstName: firstNameTextController.text.trim(),
+          username: usernameTextController.text.trim()
       );
 
       UserRegisterResult result = await LocalUserService.instance.register(user,password);
@@ -135,7 +135,6 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                               style: TextStyle(
                                   fontFamily: 'LexendDeca',
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black,
                                   fontSize: 16
                               ),
                             ),

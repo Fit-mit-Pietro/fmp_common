@@ -7,9 +7,6 @@ part of filter_lib;
 extension QuestionnaireServiceFilterParser on Filter {
 
   static Filter fromQuestionnaireAPIFilter(QuestionnaireApi.Filter element) {
-    print("QuestionnaireServiceFilterParser.fromQuestionnaireAPIFilter:");
-    print(element);
-    print("------");
     return Filter(
         possibleFields: [element.field.toServiceField()],
         selectedField: element.field.toServiceField(),
@@ -19,9 +16,6 @@ extension QuestionnaireServiceFilterParser on Filter {
   }
 
   static dynamic _castFromApiValue(String value,Field field){
-
-    print("QuestionnaireServiceFilterParser._castFromApiValue: $field with value $value");
-
     switch(field.type){
 
       case FieldValueType.bool:
@@ -39,9 +33,6 @@ extension QuestionnaireServiceFilterParser on Filter {
   }
 
   static dynamic _castFromServiceValue(dynamic value,Field field){
-
-    print("QuestionnaireServiceFilterParser._castFromServiceValue: $field with value $value");
-
     switch(field.type){
 
       case FieldValueType.bool:

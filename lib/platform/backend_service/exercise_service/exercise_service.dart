@@ -1,12 +1,13 @@
 library exercise_service;
 
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:fmp_common/platform/backend_service/crud_template_service/crud_template_service.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 import 'package:fmp_common/platform/util/id_service.dart';
 import 'package:fmp_exercise_service_api/api.dart' as API;
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 part 'exercise_service_config.dart';
 part 'exercise_service_mock.dart';

@@ -51,15 +51,27 @@ extension UserPropertyParser on UserProperty {
         return API.UserPropertyTypeEnum.BODY_MAP;
       case UserPropertyType.ENUM:
         return API.UserPropertyTypeEnum.ENUM;
+      case UserPropertyType.DATES_IN_WEEK:
+        return API.UserPropertyTypeEnum.DATES_IN_WEEK;
     }
   }
 
   static UserPropertyType fromAPIType(API.UserPropertyTypeEnum type){
-    if(type == API.UserPropertyTypeEnum.BOOL) return UserPropertyType.BOOL;
-    if(type == API.UserPropertyTypeEnum.INT) return UserPropertyType.INT;
-    if(type == API.UserPropertyTypeEnum.FULL_TEXT) return UserPropertyType.FULL_TEXT;
-    if(type == API.UserPropertyTypeEnum.BODY_MAP) return UserPropertyType.BODY_MAP;
-    if(type == API.UserPropertyTypeEnum.ENUM) return UserPropertyType.ENUM;
+    switch(type){
+      case API.UserPropertyTypeEnum.BOOL:
+        return UserPropertyType.BOOL;
+      case API.UserPropertyTypeEnum.INT:
+        return UserPropertyType.INT;
+      case API.UserPropertyTypeEnum.FULL_TEXT:
+        return UserPropertyType.FULL_TEXT;
+      case API.UserPropertyTypeEnum.BODY_MAP:
+        return UserPropertyType.BODY_MAP;
+      case API.UserPropertyTypeEnum.ENUM:
+        return UserPropertyType.ENUM;
+      case API.UserPropertyTypeEnum.DATES_IN_WEEK:
+        return UserPropertyType.DATES_IN_WEEK;
+    }
+    print("Unknown type: $type");
     throw UnimplementedError();
   }
 
