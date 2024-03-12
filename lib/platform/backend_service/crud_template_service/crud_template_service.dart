@@ -1,6 +1,7 @@
 library crud_template_service;
 
 import 'dart:math';
+import 'package:fmp_common/fmp_common.dart';
 
 part 'crud_template_service_config.dart';
 part 'crud_template_service_mock.dart';

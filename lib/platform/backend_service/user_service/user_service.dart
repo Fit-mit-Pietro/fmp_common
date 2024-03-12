@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:fmp_common/platform/models/user_service/user.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
 import 'package:fmp_common/platform/models/user_service/user_register_result.dart';
+import 'package:fmp_common/fmp_common.dart';
 
 part 'user_service_config.dart';
 part 'user_service_mock.dart';

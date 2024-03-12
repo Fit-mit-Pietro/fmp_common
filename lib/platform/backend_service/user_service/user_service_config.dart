@@ -2,8 +2,11 @@ part of user_service;
 
 class UserServiceConfig {
   UserServiceConfig(
-      {this.SERVICE_URL =
-          "http://ec2-52-59-251-16.eu-central-1.compute.amazonaws.com:3001",
+      {
+//this.SERVICE_URL =
+          //"http://ec2-52-59-251-16.eu-central-1.compute.amazonaws.com:3001",
+	this.SERVICE_URL =
+          "${ServerData.URL}:3001",
       this.USER_SERVICE_ENDPOINT_USER_REGISTER = "/register",
       this.USER_SERVICE_ENDPOINT_USER_LOG_IN = "/login",
       this.USER_SERVICE_ENDPOINT_USER_DELETE = "/delete"});
