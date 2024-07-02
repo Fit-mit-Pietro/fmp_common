@@ -1,17 +1,16 @@
 name: fmp_common
 description: Shared resources for admin app and user app
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 # ----------------------
 
 dependencies:
-
   fmp_question_service_api:
     path: ../fmp_question_service_api
   fmp_questionnaire_service_api:
@@ -25,13 +24,13 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   http: ^0.13.4
-  json_annotation: ^4.3.0  # flutter pub run build_runner build
+  json_annotation: ^4.3.0 # flutter pub run build_runner build
   video_player: 2.4.7
 
   #for password cache
   flutter_secure_storage: ^5.0.2
   shared_preferences:
-# for body map
+  # for body map
   svg_path_parser: ^1.1.1
   touchable: ^1.0.0
   xml: ^5.3.1
@@ -56,8 +55,6 @@ flutter:
   assets:
     - assets/img/fmp_logo.png
     - assets/img/undraw_finish_line.png
-
-
 
   fonts:
     - family: LexendDeca
