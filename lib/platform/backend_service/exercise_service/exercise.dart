@@ -87,8 +87,8 @@ class Exercise implements Identifiable{
   );
 
   @override
-  String getId() => this.id;
+  String getId() => id;
 
   @override
-  String getLabel() => this.label;
+  String getLabel() => label;
 }

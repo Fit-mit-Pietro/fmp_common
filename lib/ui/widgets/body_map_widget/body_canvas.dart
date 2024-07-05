@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fmp_common/fmp_common.dart';
 import 'package:svg_path_parser/svg_path_parser.dart';
@@ -32,7 +31,7 @@ class BodyCanvas extends StatelessWidget {
           aspectRatio: 336 /  460,
           child: Container(
             child: CanvasTouchDetector(
-              gesturesToOverride: [GestureType.onTapDown,GestureType.onTapUp],
+              gesturesToOverride: const [GestureType.onTapDown,GestureType.onTapUp],
               builder: (context) => CustomPaint(
                 painter: BodyPainter(
                   context: context,
@@ -79,11 +78,11 @@ class BodyPainter extends CustomPainter {
 
     List<BodyPart> generalParts = front ? model.front : model.back;
 
-    generalParts.forEach((part) {
+    for (var part in generalParts) {
 
       Path path = parseSvgPath(part.path);
       if (model.isPartSelected(part)) {
-        paint.color = Color(0xFF03E68B).withAlpha(50);
+        paint.color = const Color(0xFF03E68B).withAlpha(50);
       }else{
         paint.color = Colors.white.withAlpha(50);
       }
@@ -97,7 +96,7 @@ class BodyPainter extends CustomPainter {
 
       paint.style = PaintingStyle.stroke;
       if (model.isPartSelected(part)) {
-        paint.color = Color(0xFF03E68B);
+        paint.color = const Color(0xFF03E68B);
       }else{
         paint.color = Colors.white.withAlpha(180);
       }
@@ -111,7 +110,7 @@ class BodyPainter extends CustomPainter {
           }
         },
       );
-    });
+    }
   }
 
   @override

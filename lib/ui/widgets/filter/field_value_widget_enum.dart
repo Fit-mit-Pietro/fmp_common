@@ -29,7 +29,7 @@ class FieldValueWidgetEnum extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           isExpanded: true,
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16),
             value: value,
             icon: const Icon(Icons.keyboard_arrow_down),
             elevation: 16,

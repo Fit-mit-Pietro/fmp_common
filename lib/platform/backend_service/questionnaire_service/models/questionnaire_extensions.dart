@@ -9,9 +9,9 @@ extension ServiceQuestionnaireParser on Questionnaire {
     elements: questionnaire.elements.map<QuestionnaireElement>((e) => e.toServiceQuestion()).toList()
   );
   API.Questionnaire toAPIQuestion() => API.Questionnaire(
-    id: this.id,
-    label: this.label,
-    elements: this.elements.map<API.QuestionnaireElement>((e) => e.toAPIQuestion()).toList()
+    id: id,
+    label: label,
+    elements: elements.map<API.QuestionnaireElement>((e) => e.toAPIQuestion()).toList()
   );
 
 }
@@ -25,9 +25,9 @@ extension APIQuestionnaireParser on API.Questionnaire {
   );
 
   Questionnaire toServiceQuestion() => Questionnaire(
-      id: this.id,
-      label: this.label,
-      elements: this.elements.map<QuestionnaireElement>((e) => e.toServiceQuestion()).toList()
+      id: id,
+      label: label,
+      elements: elements.map<QuestionnaireElement>((e) => e.toServiceQuestion()).toList()
   );
 
 }

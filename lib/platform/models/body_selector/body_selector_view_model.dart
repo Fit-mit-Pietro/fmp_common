@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:fmp_common/fmp_common.dart';
-import 'package:fmp_common/platform/models/body_selector/body_part.dart';
-import 'package:fmp_common/platform/models/body_selector/body_part_symptom.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'body_selector_view_model.g.dart';
@@ -25,7 +23,7 @@ class BodySelectorViewModel{
   Map<String,List<BodyPartSymptom>> selectedSymptoms = {};
 
   void setOnPartTapped(Function(BodyPart,TapDownDetails) callback){
-    this.onPartTapped = callback;
+    onPartTapped = callback;
   }
 
   BodySelectorViewModel({
@@ -39,7 +37,7 @@ class BodySelectorViewModel{
   bool isPartSelected(BodyPart part) {
     if(selectedSymptoms.containsKey(part.id)){
       List<BodyPartSymptom> selectedSympts = selectedSymptoms[part.id] ?? [];
-      if(!selectedSympts.isEmpty) return true;
+      if(selectedSympts.isNotEmpty) return true;
     }
     return false;
   }
@@ -49,12 +47,12 @@ class BodySelectorViewModel{
   }
 
   void setPartPath(String key, String path) {
-    front.forEach((element) {
+    for (var element in front) {
       if(element.id == key){
         element.path = path;
-        return;
+        continue;
       }
-    });
+    }
   }
 
 

@@ -28,14 +28,14 @@ class _UserServiceReal implements IUserService{
         headers: {
           HttpHeaders.authorizationHeader: bearerAuth,
         },
-      ).timeout(Duration(milliseconds: 10000));
+      ).timeout(const Duration(milliseconds: 10000));
 
       print(response.statusCode);
       print(response.body);
       print(response.reasonPhrase);
     }catch(e){
       if(e is SocketException){
-        SocketException socketException = e as SocketException;
+        SocketException socketException = e;
         print(socketException);
         throw socketException;
       }else {
@@ -82,7 +82,7 @@ class _UserServiceReal implements IUserService{
       }
     }catch(e){
       if(e is SocketException){
-        SocketException socketException = e as SocketException;
+        SocketException socketException = e;
         print(socketException);
         throw socketException;
       }else {
@@ -116,7 +116,7 @@ class _UserServiceReal implements IUserService{
           },
           body: jsonEncode(json)
 
-      ).timeout(Duration(milliseconds: 10000));
+      ).timeout(const Duration(milliseconds: 10000));
 
       if(response.statusCode == 400){
         return UserRegisterResult(UserRegisterResultStatus.userAlreadyExists);

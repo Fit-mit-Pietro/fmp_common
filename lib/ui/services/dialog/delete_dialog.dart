@@ -1,9 +1,6 @@
-
-
 part of dialog_service;
 
 class _DeleteDialog extends StatefulWidget {
-
   String header;
   String label;
   Future<bool> Function() deleteOperation;
@@ -13,7 +10,6 @@ class _DeleteDialog extends StatefulWidget {
     required this.header,
     required this.label,
     required this.deleteOperation,
-
   }) : super(key: key);
 
   @override
@@ -28,8 +24,6 @@ enum _DeleteState {
 }
 
 class _DeleteDialogState extends State<_DeleteDialog> {
-
-
   _DeleteState _currentDeleteState = _DeleteState.askForConfirmation;
 
   @override
@@ -37,22 +31,22 @@ class _DeleteDialogState extends State<_DeleteDialog> {
     super.initState();
   }
 
-  void _onDeletePressed() async{
+  void _onDeletePressed() async {
     setState(() {
       _currentDeleteState = _DeleteState.deleting;
     });
     bool successful = await widget.deleteOperation();
     setState(() {
-      _currentDeleteState = successful?
-        _DeleteState.deletingSuccessful:
-        _DeleteState.deletingFailed;
+      _currentDeleteState = successful
+          ? _DeleteState.deletingSuccessful
+          : _DeleteState.deletingFailed;
     });
     await Future.delayed(const Duration(milliseconds: 1200));
-    pop(context,data: successful);
+    pop(context, data: successful);
   }
 
   void _onDeleteTest() async {
-    for(_DeleteState state in _DeleteState.values){
+    for (_DeleteState state in _DeleteState.values) {
       setState(() {
         _currentDeleteState = state;
       });
@@ -65,8 +59,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
     return Dialog(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8))
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       child: SizedBox(
         width: 128 * 3,
         child: Column(
@@ -77,9 +70,17 @@ class _DeleteDialogState extends State<_DeleteDialog> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.delete_outline,size: 48,),
-                  const SizedBox(height: 4,),
-                  Text(widget.header,style: Theme.of(context).textTheme.headline3,)
+                  const Icon(
+                    Icons.delete_outline,
+                    size: 48,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    widget.header,
+                    style: Theme.of(context).textTheme.headline3,
+                  )
                 ],
               ),
             ),
@@ -97,8 +98,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
   Container _buildBody(BuildContext context) {
     Widget child;
 
-    switch(_currentDeleteState){
-
+    switch (_currentDeleteState) {
       case _DeleteState.askForConfirmation:
         child = _buildConfirmDelete(context);
         break;
@@ -121,31 +121,28 @@ class _DeleteDialogState extends State<_DeleteDialog> {
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(8),
             bottomRight: Radius.circular(8),
-          )
-      ),
-      child:  Padding(
+          )),
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: child,
       ),
     );
   }
 
-  Widget _buildDeleting(BuildContext context){
+  Widget _buildDeleting(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-         SizedBox(
-          width: 48,
-          height: 48,
-          child: CircularProgressIndicator()
+        SizedBox(width: 48, height: 48, child: CircularProgressIndicator()),
+        SizedBox(
+          height: 4,
         ),
-        SizedBox(height: 4,),
         Text("Wid gelöscht ... ")
       ],
     );
   }
 
-  Widget _buildSuccessful(BuildContext context){
+  Widget _buildSuccessful(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
@@ -156,28 +153,30 @@ class _DeleteDialogState extends State<_DeleteDialog> {
               Icons.check_circle_outline,
               size: 48,
               color: Colors.black45,
-            )
+            )),
+        SizedBox(
+          height: 4,
         ),
-        SizedBox(height: 4,),
         Text("Löschen war erfolreich")
       ],
     );
   }
 
-  Widget _buildFailed(BuildContext context){
+  Widget _buildFailed(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         SizedBox(
-          width: 48,
-          height: 48,
-          child: Icon(
-            Icons.cancel_outlined,
-            size: 48,
-            color: Colors.black45,
-          )
+            width: 48,
+            height: 48,
+            child: Icon(
+              Icons.cancel_outlined,
+              size: 48,
+              color: Colors.black45,
+            )),
+        const SizedBox(
+          height: 4,
         ),
-        const SizedBox(height: 4,),
         Text("Etwas ist schief gegangen")
       ],
     );
@@ -187,27 +186,29 @@ class _DeleteDialogState extends State<_DeleteDialog> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(widget.label,textAlign: TextAlign.center,),
-        const SizedBox(height: 16,),
+        Text(
+          widget.label,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: ()=> pop(context,data: false),
-              child: const Text("Abbrechen")
+                onPressed: () => pop(context, data: false),
+                child: const Text("Abbrechen")),
+            const SizedBox(
+              width: 16,
             ),
-            const SizedBox(width: 16,),
             ElevatedButton(
-              onPressed: _onDeletePressed,
-              child: const Text("Löschen"),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.redAccent
-              )
-            )
-
+                onPressed: _onDeletePressed,
+                child: const Text("Löschen"),
+                style: ElevatedButton.styleFrom(primary: Colors.redAccent))
           ],
         )
       ],
-  );
+    );
   }
 }

@@ -1,48 +1,41 @@
-
-
 part of questionnaire_service;
 
-
-extension ApiUserPropertyExtension on API.UserProperty{
-
-  static API.UserProperty toServiceProperty(UserProperty userProperty) => API.UserProperty(
-    label: userProperty.label,
-    type: fromServiceType(userProperty.propertyType),
-    id: userProperty.id,
-    propertyOptions: userProperty.propertyOptions,
-    unit: userProperty.unit,
-    minValue: userProperty.minValue,
-    maxValue: userProperty.maxValue,
-
-  );
+extension ApiUserPropertyExtension on API.UserProperty {
+  static API.UserProperty toServiceProperty(UserProperty userProperty) =>
+      API.UserProperty(
+        label: userProperty.label,
+        type: fromServiceType(userProperty.propertyType),
+        id: userProperty.id,
+        propertyOptions: userProperty.propertyOptions!,
+        unit: userProperty.unit!,
+        minValue: userProperty.minValue!,
+        maxValue: userProperty.maxValue!,
+      );
 
   UserProperty fromServiceProperty() => UserProperty(
-    id: this.id,
-    propertyType: fromAPIType(this.type),
-    label: this.label,
-    propertyOptions: ObjectToMap(this.propertyOptions),
-    unit: this.unit,
-    minValue: this.minValue,
-    maxValue: this.maxValue,
-  );
+        id: id,
+        propertyType: fromAPIType(type),
+        label: label,
+        propertyOptions: objectToMap(propertyOptions),
+        unit: unit,
+        minValue: minValue,
+        maxValue: maxValue,
+      );
 
-  static Map<String,String>? ObjectToMap(Object object){
-    if(object == null) return null;
-    try{
-
+  static Map<String, String>? objectToMap(Object object) {
+    try {
       Map map = jsonDecode(jsonEncode(object));
-      map = map.cast<String,String>();
+      map = map.cast<String, String>();
 
-      if(map is Map<String,String>) return map;
-
-    }catch(e){
+      if (map is Map<String, String>) return map;
+    } catch (e) {
       print(e);
     }
+    return null;
   }
 
-
-  static API.UserPropertyTypeEnum fromServiceType(UserPropertyType type){
-    switch(type){
+  static API.UserPropertyTypeEnum fromServiceType(UserPropertyType type) {
+    switch (type) {
       case UserPropertyType.BOOL:
         return API.UserPropertyTypeEnum.BOOL;
       case UserPropertyType.INT:
@@ -58,8 +51,8 @@ extension ApiUserPropertyExtension on API.UserProperty{
     }
   }
 
-  static UserPropertyType fromAPIType(API.UserPropertyTypeEnum type){
-    switch(type){
+  static UserPropertyType fromAPIType(API.UserPropertyTypeEnum type) {
+    switch (type) {
       case API.UserPropertyTypeEnum.BOOL:
         return UserPropertyType.BOOL;
       case API.UserPropertyTypeEnum.INT:
@@ -78,12 +71,11 @@ extension ApiUserPropertyExtension on API.UserProperty{
   }
 }
 
-extension ServiceUserPropertyExtension on UserProperty{
+extension ServiceUserPropertyExtension on UserProperty {
+  static UserProperty fromAPIProperty(API.UserProperty userProperty) =>
+      userProperty.fromServiceProperty();
 
-  static UserProperty fromAPIProperty(API.UserProperty userProperty)
-  => userProperty.fromServiceProperty();
-
-  API.UserProperty toAPIProperty(){
+  API.UserProperty toAPIProperty() {
     return ApiUserPropertyExtension.toServiceProperty(this);
   }
 }

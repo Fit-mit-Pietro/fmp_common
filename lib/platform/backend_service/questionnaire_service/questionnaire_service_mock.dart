@@ -7,7 +7,7 @@ class _QuestionnaireServiceMock
     implements IQuestionnaireService
 {
 
-  QuestionnaireServiceConfig _config;
+  final QuestionnaireServiceConfig _config;
 
   _QuestionnaireServiceMock(this._config):super(_config){
     create(Questionnaire.createNew(
@@ -26,7 +26,7 @@ class _QuestionnaireServiceMock
 
     print("getFilledQuestionnaireById $id");
 
-    Questionnaire questionnaire = await this.getById(id);
+    Questionnaire questionnaire = await getById(id);
 
     print("Loaded Questionnaire: $questionnaire" );
 

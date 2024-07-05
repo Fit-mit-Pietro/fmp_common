@@ -15,8 +15,8 @@ class FadeRoute extends PageRouteBuilder {
         Animation<double> secondaryAnimation,
         ) =>
     page!,
-    reverseTransitionDuration: Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
-    transitionDuration: Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
+    reverseTransitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
+    transitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
     transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
@@ -74,8 +74,8 @@ class SlideFromToRoute extends PageRouteBuilder {
       pageBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation,) =>
       page!,
-      reverseTransitionDuration: Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
-      transitionDuration: Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
+      reverseTransitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
+      transitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
       transitionsBuilder: (BuildContext context,
           Animation<double> animation,
           Animation<double> secondaryAnimation,
@@ -83,11 +83,11 @@ class SlideFromToRoute extends PageRouteBuilder {
         bool reverse = animation.status == AnimationStatus.reverse;
 
         var _begin = transitionMode == TransitionMode.SLIDE_FROM_RIGHT_TO_LEFT
-            ? Offset(1, 0)
+            ? const Offset(1, 0)
             : null;
 
         var _begin2 = transitionMode == TransitionMode.SLIDE_FROM_RIGHT_TO_LEFT
-            ? Offset(-1, 0)
+            ? const Offset(-1, 0)
             : null;
 
         return SlideTransition(

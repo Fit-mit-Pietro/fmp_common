@@ -12,9 +12,9 @@ extension FilledQuestionnaireParser on FilledQuestionnaire {
   );
 
   API.FilledQuestionnaire toAPIQuestion() => API.FilledQuestionnaire(
-    label: this.label,
-    elements: this.elements.map((e)=> e.toAPIQuestion()).toList(),
-    id: this.id,
+    label: label,
+    elements: elements.map((e)=> e.toAPIQuestion()).toList(),
+    id: id,
   );
 
 }

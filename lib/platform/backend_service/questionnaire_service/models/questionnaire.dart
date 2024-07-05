@@ -35,5 +35,5 @@ class Questionnaire implements Identifiable{
   String getId() => id;
 
   @override
-  String getLabel() => this.label;
+  String getLabel() => label;
 }

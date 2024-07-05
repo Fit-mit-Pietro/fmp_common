@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:fmp_common/platform/backend_service/user_property_service/user_property_service.dart';
 
 class UserPropertyValue{

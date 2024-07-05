@@ -4,7 +4,7 @@ part of user_service;
 class _UserServiceMock implements IUserService{
 
   final MockBackend _backend;
-  UserServiceConfig _config;
+  final UserServiceConfig _config;
 
   _UserServiceMock(this._backend,this._config);
 

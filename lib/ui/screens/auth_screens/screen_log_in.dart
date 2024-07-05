@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/model_services/user/local_user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
@@ -59,7 +58,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
       LocalUserState localUserState = LocalUserService.instance.localUserState;
       if(localUserState != LocalUserState.loggedOut){
         // wait for log in successfull message
-        await Future.delayed(Duration(milliseconds: 1000));
+        await Future.delayed(const Duration(milliseconds: 1000));
         UserStateNavigationService.instance.navigateAccordingToUserState(localUserState);
       }
     }
@@ -86,7 +85,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                     maxWidth: 400
                 ),
               child: ListView(
-                padding: EdgeInsets.all(32),
+                padding: const EdgeInsets.all(32),
                 shrinkWrap: true,
                 children: [
                   Column(
@@ -104,11 +103,11 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                       const SizedBox(height: 32,),
                       Text(
                         "Willkommen,",
-                        style: Theme.of(context).textTheme.headline2
+                        style: Theme.of(context).textTheme.displayMedium
                       ),
                       Text(
                         "Bitte melden Sie sich an.",
-                        style: Theme.of(context).textTheme.headline3
+                        style: Theme.of(context).textTheme.displaySmall
                       ),
                       const SizedBox(height: 8,),
                       Row(
@@ -174,7 +173,7 @@ class _ScreenLogInState extends State<ScreenLogIn> {
                     validator: StringValidator.validatePassword,
                   ),
                   const SizedBox(height: 16,),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     height: 48,
                     child: _buildLoginButton(),
@@ -212,10 +211,10 @@ class _ScreenLogInState extends State<ScreenLogIn> {
           onPressed: _onLoginButtonPressed,
         );
       case LogInState.waitingForResult:
-        return Container(
+        return const SizedBox(
           height: 40,
           width: 40,
-          child: const Center(child: CircularProgressIndicator())
+          child: Center(child: CircularProgressIndicator())
         );
     }
   }

@@ -55,7 +55,7 @@ class AuthErrorText<T> extends StatelessWidget {
   final String Function(T t) getText;
   final T t;
 
-  AuthErrorText({
+  const AuthErrorText({
     Key? key,
     required this.getColor,
     required this.getText,
@@ -79,7 +79,7 @@ class AuthErrorText<T> extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(child: Divider(color: c,)),
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
             Text(
               text.toUpperCase(),
               style: TextStyle(
@@ -89,7 +89,7 @@ class AuthErrorText<T> extends StatelessWidget {
                   color:c
               ),
             ),
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
 
             Expanded(child: Divider(color: c,)),
           ]

@@ -15,10 +15,10 @@ class BodySelectorViewService {
     instance = BodySelectorViewService._();
 
     instance.availableSymptoms = [];
-    SymptomsData.forEach((element) {
+    for (var element in SymptomsData) {
       BodyPartSymptom symptom = BodyPartSymptom.fromJson(element);
       instance.availableSymptoms.add(symptom);
-    });
+    }
 
   }
 
@@ -186,22 +186,22 @@ class BodySelectorViewService {
 
   List<BodyPartSymptom> getSymptomsByKeys(List<String> keys){
     List<BodyPartSymptom> symptoms = [];
-    keys.forEach((key) {
+    for (var key in keys) {
       BodyPartSymptom? symptom = availableSymptoms.firstWhereOrNull((element) => element.id == key);
       if(symptom != null){
         symptoms.add(symptom);
       }
-    });
+    }
     return symptoms;
   }
 
   Future<BodySelectorViewModel> loadModel() async{
 
     List<BodyPart> availableBodyParts = [];
-    BodyPartsData.forEach((element) {
+    for (var element in BodyPartsData) {
       BodyPart symptom = BodyPart.fromJson(element);
       availableBodyParts.add(symptom);
-    });
+    }
 
     List<BodyPart> frontParts = await getBodyPartsFromSvg("assets/img/body_map/body_front_svg.svg", availableBodyParts);
     List<BodyPart> backParts = await getBodyPartsFromSvg("assets/img/body_map/body_back_svg.svg", availableBodyParts);
@@ -216,7 +216,7 @@ class BodySelectorViewService {
     ) async{
     List<BodyPart> parts = [];
     Map<String,String> frontPartsPaths = await loadBodyPartsFromSvg(svgImage:path);
-    frontPartsPaths.keys.forEach((String key) {
+    for (var key in frontPartsPaths.keys) {
       String? path = frontPartsPaths[key];
       if(path != null){
         BodyPart? part = availableBodyParts.firstWhereOrNull((element) => 
@@ -231,7 +231,7 @@ class BodySelectorViewService {
           // print("Could not find sth for $key");
         }
       }
-    });
+    }
     return parts
     ;
   }
@@ -244,14 +244,14 @@ class BodySelectorViewService {
 
     Map<String,String> parts = {};
 
-    paths.forEach((element) {
+    for (var element in paths) {
       String partName = element.getAttribute('id').toString();
       String partPath = element.getAttribute('d').toString();
 
       if (!partName.contains('path') != "w") {
         parts[partName] = partPath;
       }
-    });
+    }
 
     return parts;
   }

@@ -3,11 +3,9 @@ library questionnaire_service;
 import 'dart:convert';
 
 import 'package:fmp_common/platform/backend_service/crud_template_service/crud_template_service.dart';
-import 'package:fmp_common/platform/backend_service/exercise_service/exercise_service.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 import 'package:fmp_common/platform/backend_service/question_service/question_service.dart';
 import 'package:fmp_common/platform/backend_service/user_property_service/user_property_service.dart';
-import 'package:fmp_common/platform/util/id_service.dart';
 import 'package:fmp_common/platform/util/id_service.dart';
 import 'package:collection/collection.dart';
 

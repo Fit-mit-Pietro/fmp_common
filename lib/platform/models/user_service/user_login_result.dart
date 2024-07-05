@@ -17,7 +17,7 @@ class UserLoginResult{
   User? get user => _user;
 
   UserLoginResult(this._status,{User? user,String? token}){
-    this._token = token;
-    this._user = user;
+    _token = token;
+    _user = user;
   }
 }

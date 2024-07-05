@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fmp_common/fmp_common.dart';
-import 'package:fmp_common/ui/widgets/body_map_widget/body_canvas.dart';
 
 
 class BodyMapWidget extends StatefulWidget {
 
   final BodySelectorViewModel model;
 
-  BodyMapWidget({Key? key,required this.model}) : super(key: key);
+  const BodyMapWidget({Key? key,required this.model}) : super(key: key);
 
   @override
   _BodyMapWidgetState createState() => _BodyMapWidgetState();
@@ -50,20 +49,20 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
 
   Future _showSymptomsMenu(BodyPart bodyPart,Function update) async{
 
-    final RenderBox? overlay = Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+    final RenderBox? overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
 
     await showMenu(
       context: context,
       position: RelativeRect.fromRect(
-          _tapPosition & Size(40, 40), // smaller rect, the touch area
+          _tapPosition & const Size(40, 40), // smaller rect, the touch area
           Offset.zero & (overlay?.size ??
-              Size(0, 0)) // Bigger rect, the entire screen
+              const Size(0, 0)) // Bigger rect, the entire screen
       ),
 
       items: [
         PopupMenuItem(
             enabled: false,
-            child: Text(bodyPart.label, style: Theme.of(context).textTheme.headline3)
+            child: Text(bodyPart.label, style: Theme.of(context).textTheme.displaySmall)
         ),
 
         if(bodyPart.possibleSymptomKeys.isNotEmpty )
@@ -90,7 +89,7 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: 20,
                 child: Checkbox(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -105,8 +104,8 @@ class _BodyMapWidgetState extends State<BodyMapWidget> {
                   },
                 ),
               ),
-              SizedBox(width: 12,),
-              Flexible(child: Text(symptom.label,style: Theme.of(context).textTheme.bodyText1,),)
+              const SizedBox(width: 12,),
+              Flexible(child: Text(symptom.label,style: Theme.of(context).textTheme.bodyLarge,),)
             ],
           ));
         }),

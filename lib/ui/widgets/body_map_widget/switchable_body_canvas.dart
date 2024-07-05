@@ -60,7 +60,7 @@ class _SwitchableBodyCanvasState extends State<SwitchableBodyCanvas> with Single
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: widget.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +85,7 @@ class _SwitchableBodyCanvasState extends State<SwitchableBodyCanvas> with Single
                     // we want to end at zero, as we dont want to mirror
                     (1 - _controller.value) * math.pi
                 ),
-              child: Container(
+              child: SizedBox(
                 width: widget.width,
                 height: widget.height,
                 child: BodyCanvas(model: widget.model, front: _controller.value < 0.5)
@@ -103,13 +103,13 @@ class _SwitchableBodyCanvasState extends State<SwitchableBodyCanvas> with Single
       onTap: () => _onSwitchSideTapped(selected),
       radius: 8,
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: selected? Theme.of(context).textTheme.headline1!.color!.withAlpha(30): Colors.transparent,
+            color: selected? Theme.of(context).textTheme.displayLarge!.color!.withAlpha(30): Colors.transparent,
             borderRadius: BorderRadius.circular(8)
         ),
         child: Text(label,style: TextStyle(
-          color: Theme.of(context).textTheme.headline1!.color
+          color: Theme.of(context).textTheme.displayLarge!.color
         ),),
       ),
     );

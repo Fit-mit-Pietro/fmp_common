@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/model_services/user/local_user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user.dart';
@@ -62,7 +61,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
         // keep loading indicator if successful as screen transition will follow
         if(lastRegisterState == UserRegisterResultStatus.successful){
           _logInState = RegisterState.waitingForResult;
-          Future.delayed(Duration(seconds: 1));
+          Future.delayed(const Duration(seconds: 1));
           UserStateNavigationService.instance.navigateAccordingToUserState(LocalUserService.instance.localUserState);
         }else{
           _logInState = RegisterState.noRequestSend;
@@ -91,7 +90,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                   maxWidth: 400
               ),
               child: ListView(
-                padding: EdgeInsets.all(32),
+                padding: const EdgeInsets.all(32),
                 shrinkWrap: true,
                 children: [
                   Column(
@@ -109,11 +108,11 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                       const SizedBox(height: 32,),
                       Text(
                           "Willkommen,",
-                          style: Theme.of(context).textTheme.headline2
+                          style: Theme.of(context).textTheme.displayMedium
                       ),
                       Text(
                           "Profil erstellen.",
-                          style: Theme.of(context).textTheme.headline3
+                          style: Theme.of(context).textTheme.displaySmall
                       ),
                       const SizedBox(height: 8,),
                       Row(
@@ -224,12 +223,12 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                     validator: StringValidator.validatePassword,
                   ),
                   const SizedBox(height: 16,),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     height: 48,
                     child: _buildLoginButton(),
                   ),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Container(
                     width: double.infinity,
                     alignment: Alignment.center,
@@ -261,7 +260,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
           onPressed: _onRegisterButtonPressed,
         );
       case RegisterState.waitingForResult:
-        return Container(
+        return const SizedBox(
             height: 40,
             width: 40,
             child: Center(child: CircularProgressIndicator(color: Colors.black,))

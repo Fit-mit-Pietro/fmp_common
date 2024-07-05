@@ -81,9 +81,9 @@ class _WidgetVideoPlayerState extends State<WidgetVideoPlayer> {
                               },
                               icon: Icon(Icons.replay, color: ICON_COLOR,),
                             ),*/
-                            SizedBox(width: 8,),
+                            const SizedBox(width: 8,),
                             VideoPlayerDurationText(controller: widget.controller, color: ICON_COLOR,),
-                            SizedBox(width: 16,),
+                            const SizedBox(width: 16,),
                             VideoPlayerSoundSlider(controller: widget.controller, color: ICON_COLOR,),
                           ],
                         )
@@ -146,7 +146,7 @@ class _VideoPlayerSoundSliderState extends State<VideoPlayerSoundSlider> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 24,
           child: IconButton(
             visualDensity: VisualDensity.compact,

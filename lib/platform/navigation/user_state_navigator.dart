@@ -21,6 +21,7 @@ class UserStateNavigator implements IUserStateNavigator{
     this.update = update;
     this.update();
     _screenHome = screenHome;
+    return null;
 
   }
 

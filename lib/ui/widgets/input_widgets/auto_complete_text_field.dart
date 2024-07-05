@@ -14,7 +14,7 @@ class AutoCompleteTextField extends StatefulWidget {
 
 class _AutoCompleteTextFieldState extends State<AutoCompleteTextField> {
 
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
 
   @override
   void initState() {
@@ -35,6 +35,6 @@ class _AutoCompleteTextFieldState extends State<AutoCompleteTextField> {
       ),
 
       controller: _editingController,
-    );;
+    );
   }
 }

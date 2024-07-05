@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fmp_common/ui/widgets/filter/filter_widget_expandable_container.dart';
 
 class FieldWidgetValueText extends StatefulWidget {
   Function(String) onValueChanged;
@@ -14,7 +13,7 @@ class FieldWidgetValueText extends StatefulWidget {
 }
 
 class _FieldWidgetValueTextState extends State<FieldWidgetValueText> {
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
 
   void _onValueChanged(String? value) {
     if (value != null) widget.onValueChanged(value);
@@ -33,7 +32,7 @@ class _FieldWidgetValueTextState extends State<FieldWidgetValueText> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: 1,
-      style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16),
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black.withOpacity(0.08), width: 1),

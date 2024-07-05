@@ -1,9 +1,6 @@
-
-
 part of dialog_service;
 
 class _InfoDialog extends StatelessWidget {
-
   String header;
   String label;
 
@@ -11,7 +8,6 @@ class _InfoDialog extends StatelessWidget {
     Key? key,
     required this.header,
     required this.label,
-
   }) : super(key: key);
 
   @override
@@ -19,8 +15,7 @@ class _InfoDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8))
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       child: SizedBox(
         width: 128 * 3,
         child: Column(
@@ -31,9 +26,17 @@ class _InfoDialog extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.info_outline,size: 48,),
-                  const SizedBox(height: 4,),
-                  Text(header,style: Theme.of(context).textTheme.headline3,)
+                  const Icon(
+                    Icons.info_outline,
+                    size: 48,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    header,
+                    style: Theme.of(context).textTheme.displaySmall,
+                  )
                 ],
               ),
             ),
@@ -48,32 +51,29 @@ class _InfoDialog extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(8),
                     bottomRight: Radius.circular(8),
-                  )
-              ),
-              child:  Padding(
+                  )),
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child:   Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(label),
-
-
-                    Container(height: 8,),
-
+                    Container(
+                      height: 8,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-
-                        ElevatedButton(onPressed: ()=>pop(context), child: Text("Schließen"))
+                        ElevatedButton(
+                            onPressed: () => pop(context),
+                            child: const Text("Schließen"))
                       ],
                     ),
-
                   ],
                 ),
               ),
             )
-
           ],
         ),
       ),

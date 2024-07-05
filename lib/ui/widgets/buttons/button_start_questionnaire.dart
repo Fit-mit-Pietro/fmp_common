@@ -15,10 +15,10 @@ class ButtonStartQuestionnaire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF03E68B))
+          backgroundColor: WidgetStateProperty.all<Color>(const Color(0xFF03E68B))
         ),
         onPressed: onPressed,
         child: Row(
@@ -27,13 +27,13 @@ class ButtonStartQuestionnaire extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: 'Quicksand',
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                   fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
               height: 48,
             ),

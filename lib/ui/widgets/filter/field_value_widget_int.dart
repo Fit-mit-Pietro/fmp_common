@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/validator/string_validator.dart';
-import 'package:fmp_common/ui/widgets/filter/filter_widget_expandable_container.dart';
 
 class FieldWidgetValueInt extends StatefulWidget {
   Function(int) onValueChanged;
@@ -15,19 +14,17 @@ class FieldWidgetValueInt extends StatefulWidget {
 }
 
 class _FieldWidgetValueIntState extends State<FieldWidgetValueInt> {
-  TextEditingController _editingController = TextEditingController();
+  final TextEditingController _editingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void _onValueChanged() {
     if (_formKey.currentState!.validate()) {
       String value = _editingController.text;
-      if (value != null){
-        int? i = int.tryParse(value);
-        if( i != null){
-          widget.onValueChanged(i);
-        }
+      int? i = int.tryParse(value);
+      if( i != null){
+        widget.onValueChanged(i);
       }
-    }
+        }
   }
 
   @override
@@ -45,7 +42,7 @@ class _FieldWidgetValueIntState extends State<FieldWidgetValueInt> {
       child: TextFormField(
         keyboardType: TextInputType.number,
         maxLines: 1,
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16),
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16),
         validator: StringValidator.validateIntParsableNotNull,
         decoration: InputDecoration(
           border: OutlineInputBorder(

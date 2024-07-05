@@ -31,7 +31,7 @@ class ExercisePropertyLink implements Identifiable{
   String getId() => id;
 
   @override
-  String getLabel() => this.id;
+  String getLabel() => id;
 
 }
 

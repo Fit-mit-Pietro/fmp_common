@@ -1,7 +1,6 @@
 
 
 
-import 'package:fmp_common/platform/backend_service/exercise_service/exercise_service.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 
 class FilterWidgetFunctions{

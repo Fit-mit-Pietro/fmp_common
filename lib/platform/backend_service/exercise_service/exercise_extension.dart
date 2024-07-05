@@ -1,84 +1,77 @@
-
 part of exercise_service;
 
-
-
 extension ServiceExerciseParser on Exercise {
+  static Exercise fromAPIExercise(api.Exercise element) => Exercise(
+        id: element.id,
+        label: element.text,
+        duration: element.duration.toDouble(),
+        difficulty: element.difficulty,
+        description: element.description,
+        exerciseType: fromAPIType(element.exerciseType),
+        videoUrl: element.videoUrl,
+      );
 
-  static Exercise fromAPIExercise(API.Exercise element) => Exercise(
-    id: element.id,
-    label: element.text,
-    duration: element.duration?.toDouble(),
-    difficulty: element.difficulty,
-    description: element.description,
-    exerciseType: fromAPIType(element.exerciseType),
-    videoUrl: element.videoUrl,
-  );
+  api.Exercise toAPIExercise() => api.Exercise(
+        text: label,
+        id: id,
+        duration: duration!,
+        difficulty: difficulty!,
+        description: description!,
+        exerciseType: fromServiceType(exerciseType ?? ExerciseType.ENDURANCE),
+        videoUrl: videoUrl!,
+      );
 
-  API.Exercise toAPIExercise() => API.Exercise(
-    text: this.label,
-    id: this.id,
-    duration: this.duration,
-    difficulty: this.difficulty,
-    description: this.description,
-    exerciseType: fromServiceType(this.exerciseType ?? ExerciseType.ENDURANCE),
-    videoUrl: this.videoUrl,
-  );
-
-  static API.ExerciseExerciseTypeEnum fromServiceType(ExerciseType type){
-    switch(type) {
+  static api.ExerciseExerciseTypeEnum fromServiceType(ExerciseType type) {
+    switch (type) {
       case ExerciseType.ENDURANCE:
-        return API.ExerciseExerciseTypeEnum.ENDURANCE;
+        return api.ExerciseExerciseTypeEnum.ENDURANCE;
       case ExerciseType.MUSCLE_BUILDING:
-        return API.ExerciseExerciseTypeEnum.MUSCLE_BUILDING;
+        return api.ExerciseExerciseTypeEnum.MUSCLE_BUILDING;
       case ExerciseType.STRENGTH:
-        return API.ExerciseExerciseTypeEnum.STRENGTH;
+        return api.ExerciseExerciseTypeEnum.STRENGTH;
       case ExerciseType.STRENGTH_ENDURANCE:
-        return API.ExerciseExerciseTypeEnum.STRENGTH_ENDURANCE;
+        return api.ExerciseExerciseTypeEnum.STRENGTH_ENDURANCE;
       case ExerciseType.MAXIMUM_STRENGTH:
-        return API.ExerciseExerciseTypeEnum.MAXIMUM_STRENGTH;
+        return api.ExerciseExerciseTypeEnum.MAXIMUM_STRENGTH;
       case ExerciseType.QUICK_STRENGTH:
-        return API.ExerciseExerciseTypeEnum.QUICK_STRENGTH;
+        return api.ExerciseExerciseTypeEnum.QUICK_STRENGTH;
       case ExerciseType.FLEXIBILITY:
-        return API.ExerciseExerciseTypeEnum.FLEXIBILITY;
+        return api.ExerciseExerciseTypeEnum.FLEXIBILITY;
       case ExerciseType.BALANCE:
-        return API.ExerciseExerciseTypeEnum.BALANCE;
+        return api.ExerciseExerciseTypeEnum.BALANCE;
       case ExerciseType.RELAXATION:
-        return API.ExerciseExerciseTypeEnum.RELAXATION;
+        return api.ExerciseExerciseTypeEnum.RELAXATION;
     }
   }
 
-  static ExerciseType fromAPIType(API.ExerciseExerciseTypeEnum type){
-    switch(type){
-      case API.ExerciseExerciseTypeEnum.MUSCLE_BUILDING:
+  static ExerciseType fromAPIType(api.ExerciseExerciseTypeEnum type) {
+    switch (type) {
+      case api.ExerciseExerciseTypeEnum.MUSCLE_BUILDING:
         return ExerciseType.MUSCLE_BUILDING;
-      case API.ExerciseExerciseTypeEnum.STRENGTH:
+      case api.ExerciseExerciseTypeEnum.STRENGTH:
         return ExerciseType.STRENGTH;
-      case API.ExerciseExerciseTypeEnum.STRENGTH_ENDURANCE:
+      case api.ExerciseExerciseTypeEnum.STRENGTH_ENDURANCE:
         return ExerciseType.STRENGTH_ENDURANCE;
-      case API.ExerciseExerciseTypeEnum.MAXIMUM_STRENGTH:
+      case api.ExerciseExerciseTypeEnum.MAXIMUM_STRENGTH:
         return ExerciseType.MAXIMUM_STRENGTH;
-      case API.ExerciseExerciseTypeEnum.QUICK_STRENGTH:
+      case api.ExerciseExerciseTypeEnum.QUICK_STRENGTH:
         return ExerciseType.QUICK_STRENGTH;
-      case API.ExerciseExerciseTypeEnum.FLEXIBILITY:
+      case api.ExerciseExerciseTypeEnum.FLEXIBILITY:
         return ExerciseType.FLEXIBILITY;
-      case API.ExerciseExerciseTypeEnum.BALANCE:
+      case api.ExerciseExerciseTypeEnum.BALANCE:
         return ExerciseType.BALANCE;
-      case API.ExerciseExerciseTypeEnum.RELAXATION:
+      case api.ExerciseExerciseTypeEnum.RELAXATION:
         return ExerciseType.RELAXATION;
-      case API.ExerciseExerciseTypeEnum.ENDURANCE:
+      case api.ExerciseExerciseTypeEnum.ENDURANCE:
         return ExerciseType.ENDURANCE;
     }
     return ExerciseType.ENDURANCE;
   }
 }
 
-extension APIExerciseParser on API.Exercise {
+extension APIExerciseParser on api.Exercise {
+  static api.Exercise fromServiceExercise(Exercise element) =>
+      element.toAPIExercise();
 
-  static API.Exercise fromServiceExercise(Exercise element)
-  => element.toAPIExercise();
-
-  Exercise toServiceExercise()
-  => ServiceExerciseParser.fromAPIExercise(this);
-
+  Exercise toServiceExercise() => ServiceExerciseParser.fromAPIExercise(this);
 }

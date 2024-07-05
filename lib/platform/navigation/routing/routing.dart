@@ -29,7 +29,7 @@ dynamic getRoute(Widget screen,TransitionMode mode){
 
     case TransitionMode.NONE:
       return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
+          transitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
           pageBuilder: (_, __, ___) => screen
       );
 

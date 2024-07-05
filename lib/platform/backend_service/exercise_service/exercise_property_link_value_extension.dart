@@ -1,28 +1,25 @@
-
 part of exercise_service;
 
-
-
 extension ServiceExercisePropertyLinkValueParser on ExercisePropertyLinkValue {
+  static ExercisePropertyLinkValue fromAPIExercisePropertyLinkValue(
+          api.ExercisePropertyLinkValue element) =>
+      ExercisePropertyLinkValue(
+          value: element.value as double,
+          filter: element.filter.toServiceFilter());
 
-  static ExercisePropertyLinkValue fromAPIExercisePropertyLinkValue(API.ExercisePropertyLinkValue element) => ExercisePropertyLinkValue(
-    value: element.value as double,
-    filter: element.filter.toServiceFilter()
-  );
-
-  API.ExercisePropertyLinkValue toAPIExercisePropertyLinkValue() => API.ExercisePropertyLinkValue(
-    filter: this.filter.toExerciseAPIFilter(),
-    value: this.value,
-  );
-
+  api.ExercisePropertyLinkValue toAPIExercisePropertyLinkValue() =>
+      api.ExercisePropertyLinkValue(
+        filter: filter.toExerciseAPIFilter(),
+        value: value,
+      );
 }
 
-extension APIExercisePropertyLinkValueParser on API.ExercisePropertyLinkValue {
+extension APIExercisePropertyLinkValueParser on api.ExercisePropertyLinkValue {
+  static api.ExercisePropertyLinkValue fromServiceExercisePropertyLinkValue(
+          ExercisePropertyLinkValue element) =>
+      element.toAPIExercisePropertyLinkValue();
 
-  static API.ExercisePropertyLinkValue fromServiceExercisePropertyLinkValue(ExercisePropertyLinkValue element)
-  => element.toAPIExercisePropertyLinkValue();
-
-  ExercisePropertyLinkValue toServiceExercisePropertyLinkValue()
-  => ServiceExercisePropertyLinkValueParser.fromAPIExercisePropertyLinkValue(this);
-
+  ExercisePropertyLinkValue toServiceExercisePropertyLinkValue() =>
+      ServiceExercisePropertyLinkValueParser.fromAPIExercisePropertyLinkValue(
+          this);
 }

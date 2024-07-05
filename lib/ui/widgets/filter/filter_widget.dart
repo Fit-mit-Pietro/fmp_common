@@ -1,9 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fmp_common/fmp_common.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
-import 'dart:collection';
 import 'package:fmp_common/ui/widgets/filter/field_value_widget.dart';
 import 'package:fmp_common/ui/widgets/filter/filter_widget_expandable_container.dart';
 import 'package:fmp_common/ui/widgets/filter/filter_widget_functions.dart';
@@ -70,7 +68,7 @@ class _FilterWidgetState extends State<FilterWidget> with FilterWidgetFunctions{
                   style: Theme
                       .of(context)
                       .textTheme
-                      .bodyText1
+                      .bodyLarge
                       ?.copyWith(fontSize: 16),
                   value: fields.firstWhere((element) => element.id == widget.filter.getSelectedField().id),
 
@@ -91,14 +89,14 @@ class _FilterWidgetState extends State<FilterWidget> with FilterWidgetFunctions{
               ),
             ),
           ),
-        if(widget.showFieldsDropdown)SizedBox(width: 8,),
+        if(widget.showFieldsDropdown)const SizedBox(width: 8,),
         FilterWidgetExpandableContainer(
           child: DropdownButtonHideUnderline(
             child: DropdownButton<FilterOperation>(
               style: Theme
                   .of(context)
                   .textTheme
-                  .bodyText1
+                  .bodyLarge
                   ?.copyWith(fontSize: 16),
               value: widget.filter.selectedFilterOperation,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -117,7 +115,7 @@ class _FilterWidgetState extends State<FilterWidget> with FilterWidgetFunctions{
             ),
           ),
         ),
-        SizedBox(width: 8,),
+        const SizedBox(width: 8,),
         Expanded(
           flex: 1,
           child: FieldValueWidget(
@@ -141,7 +139,7 @@ class DropDownChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      waitDuration: Duration(milliseconds: 1500),
+      waitDuration: const Duration(milliseconds: 1500),
       message: text,
       child: Text(text,overflow: TextOverflow.ellipsis,maxLines: 1),
 

@@ -1,14 +1,12 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fmp_common/platform/backend_service/exercise_service/exercise_service.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 
 import 'package:fmp_common/ui/widgets/filter/field_value_widget_bool.dart';
 import 'package:fmp_common/ui/widgets/filter/field_value_widget_enum.dart';
 import 'package:fmp_common/ui/widgets/filter/field_value_widget_int.dart';
 import 'package:fmp_common/ui/widgets/filter/field_value_widget_text.dart';
-import 'package:fmp_common/ui/widgets/filter/filter_widget_expandable_container.dart';
 
 class FieldValueWidget extends StatelessWidget {
 
@@ -35,7 +33,7 @@ class FieldValueWidget extends StatelessWidget {
         }
 
         return FieldWidgetValueBool(
-          onValueChanged: this.onValueChanged,
+          onValueChanged: onValueChanged,
           value: _value,
         );
       case FieldValueType.int:
@@ -48,7 +46,7 @@ class FieldValueWidget extends StatelessWidget {
         }
 
         return FieldWidgetValueInt(
-          onValueChanged: this.onValueChanged,
+          onValueChanged: onValueChanged,
           value: _value,
         );
       case FieldValueType.text:
@@ -61,11 +59,11 @@ class FieldValueWidget extends StatelessWidget {
         }
 
         return FieldWidgetValueText(
-          onValueChanged: this.onValueChanged,
+          onValueChanged: onValueChanged,
           value:_value,
         );
       case FieldValueType.bodyMap:
-        return Text("Bodymap not supported!");
+        return const Text("Bodymap not supported!");
       case FieldValueType.enumValue:
 
         String _value = "";
@@ -76,12 +74,12 @@ class FieldValueWidget extends StatelessWidget {
           print(e);
         }
         return FieldValueWidgetEnum(
-          onValueChanged: this.onValueChanged,
+          onValueChanged: onValueChanged,
           value: _value,
           enumOptions: field.enumValues!,
         );
       case FieldValueType.datesInWeek:
-        return Text("Nicht unterstützt!");
+        return const Text("Nicht unterstützt!");
     }
   }
 }

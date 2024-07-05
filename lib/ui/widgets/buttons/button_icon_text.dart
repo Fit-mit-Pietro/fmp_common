@@ -20,7 +20,7 @@ class ButtonIconText extends StatelessWidget {
           Text(
             text,
           ),
-          SizedBox(width: 12,),
+          const SizedBox(width: 12,),
           Icon(
             icon,
           )
