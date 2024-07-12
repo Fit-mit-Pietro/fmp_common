@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:fmp_common/platform/backend_service/crud_template_service/crud_template_service.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 import 'package:fmp_common/platform/util/id_service.dart';
-import 'package:fmp_exercise_service_api/api.dart' as API;
+import 'package:fmp_exercise_service_api/api.dart' as api;
 import 'package:http/http.dart';
 
 part 'exercise_service_config.dart';

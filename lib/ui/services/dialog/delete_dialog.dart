@@ -79,7 +79,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
                   ),
                   Text(
                     widget.header,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.displaySmall,
                   )
                 ],
               ),
@@ -163,9 +163,9 @@ class _DeleteDialogState extends State<_DeleteDialog> {
   }
 
   Widget _buildFailed(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children: [
         SizedBox(
             width: 48,
             height: 48,
@@ -174,7 +174,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
               size: 48,
               color: Colors.black45,
             )),
-        const SizedBox(
+        SizedBox(
           height: 4,
         ),
         Text("Etwas ist schief gegangen")
@@ -205,7 +205,8 @@ class _DeleteDialogState extends State<_DeleteDialog> {
             ElevatedButton(
                 onPressed: _onDeletePressed,
                 child: const Text("Löschen"),
-                style: ElevatedButton.styleFrom(primary: Colors.redAccent))
+                style:
+                    ElevatedButton.styleFrom(foregroundColor: Colors.redAccent))
           ],
         )
       ],

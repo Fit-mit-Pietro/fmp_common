@@ -1,8 +1,8 @@
 part of questionnaire_service;
 
-extension ApiUserPropertyExtension on API.UserProperty {
-  static API.UserProperty toServiceProperty(UserProperty userProperty) =>
-      API.UserProperty(
+extension ApiUserPropertyExtension on api.UserProperty {
+  static api.UserProperty toServiceProperty(UserProperty userProperty) =>
+      api.UserProperty(
         label: userProperty.label,
         type: fromServiceType(userProperty.propertyType),
         id: userProperty.id,
@@ -34,36 +34,36 @@ extension ApiUserPropertyExtension on API.UserProperty {
     return null;
   }
 
-  static API.UserPropertyTypeEnum fromServiceType(UserPropertyType type) {
+  static api.UserPropertyTypeEnum fromServiceType(UserPropertyType type) {
     switch (type) {
       case UserPropertyType.BOOL:
-        return API.UserPropertyTypeEnum.BOOL;
+        return api.UserPropertyTypeEnum.BOOL;
       case UserPropertyType.INT:
-        return API.UserPropertyTypeEnum.INT;
+        return api.UserPropertyTypeEnum.INT;
       case UserPropertyType.FULL_TEXT:
-        return API.UserPropertyTypeEnum.FULL_TEXT;
+        return api.UserPropertyTypeEnum.FULL_TEXT;
       case UserPropertyType.BODY_MAP:
-        return API.UserPropertyTypeEnum.BODY_MAP;
+        return api.UserPropertyTypeEnum.BODY_MAP;
       case UserPropertyType.ENUM:
-        return API.UserPropertyTypeEnum.ENUM;
+        return api.UserPropertyTypeEnum.ENUM;
       case UserPropertyType.DATES_IN_WEEK:
-        return API.UserPropertyTypeEnum.DATES_IN_WEEK;
+        return api.UserPropertyTypeEnum.DATES_IN_WEEK;
     }
   }
 
-  static UserPropertyType fromAPIType(API.UserPropertyTypeEnum type) {
+  static UserPropertyType fromAPIType(api.UserPropertyTypeEnum type) {
     switch (type) {
-      case API.UserPropertyTypeEnum.BOOL:
+      case api.UserPropertyTypeEnum.BOOL:
         return UserPropertyType.BOOL;
-      case API.UserPropertyTypeEnum.INT:
+      case api.UserPropertyTypeEnum.INT:
         return UserPropertyType.INT;
-      case API.UserPropertyTypeEnum.FULL_TEXT:
+      case api.UserPropertyTypeEnum.FULL_TEXT:
         return UserPropertyType.FULL_TEXT;
-      case API.UserPropertyTypeEnum.BODY_MAP:
+      case api.UserPropertyTypeEnum.BODY_MAP:
         return UserPropertyType.BODY_MAP;
-      case API.UserPropertyTypeEnum.ENUM:
+      case api.UserPropertyTypeEnum.ENUM:
         return UserPropertyType.ENUM;
-      case API.UserPropertyTypeEnum.DATES_IN_WEEK:
+      case api.UserPropertyTypeEnum.DATES_IN_WEEK:
         return UserPropertyType.DATES_IN_WEEK;
     }
     print("Unknown type: $type");
@@ -72,10 +72,10 @@ extension ApiUserPropertyExtension on API.UserProperty {
 }
 
 extension ServiceUserPropertyExtension on UserProperty {
-  static UserProperty fromAPIProperty(API.UserProperty userProperty) =>
+  static UserProperty fromAPIProperty(api.UserProperty userProperty) =>
       userProperty.fromServiceProperty();
 
-  API.UserProperty toAPIProperty() {
+  api.UserProperty toAPIProperty() {
     return ApiUserPropertyExtension.toServiceProperty(this);
   }
 }

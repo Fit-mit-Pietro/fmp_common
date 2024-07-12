@@ -2,22 +2,22 @@ part of questionnaire_service;
 
 extension FilledQuestionnaireElementParser on FilledQuestionnaireElement {
   static FilledQuestionnaireElement fromAPIQuestion(
-          API.FilledQuestionnaireElement element) =>
+          api.FilledQuestionnaireElement element) =>
       FilledQuestionnaireElement(
           filledQuestion: element.question.toServiceQuestion(),
           index: element.index,
           dependency: element.dependsOn.toServiceFilter());
 
-  API.FilledQuestionnaireElement toAPIQuestion() =>
-      API.FilledQuestionnaireElement(
+  api.FilledQuestionnaireElement toAPIQuestion() =>
+      api.FilledQuestionnaireElement(
           question: filledQuestion.toApiQuestion(),
           index: index,
           dependsOn: dependency!.toQuestionnaireAPIFilter());
 }
 
 extension APIFilledQuestionnaireElementParser
-    on API.FilledQuestionnaireElement {
-  static API.FilledQuestionnaireElement fromServiceQuestion(
+    on api.FilledQuestionnaireElement {
+  static api.FilledQuestionnaireElement fromServiceQuestion(
           FilledQuestionnaireElement element) =>
       element.toAPIQuestion();
 

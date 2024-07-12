@@ -1,33 +1,37 @@
-
 part of question_service;
 
-extension ServiceQuestionParser on Question {
-
-  static Question fromAPIQuestion(API.Question question) => Question(
-    id: question.id,
-    userPropertyId: question.userPropertyId,
-    label: question.text
-  );
-  API.Question toAPIQuestion() => API.Question(
-      id: this.id,
-      userPropertyId: this.userPropertyId,
-      text: this.label
-  );
-
+extension SwaggerQuestionExtension on Question {
+  swagger.Question toSwagger() => swagger.Question(
+        id: id,
+        text: label,
+        userPropertyId: userPropertyId,
+      );
 }
 
-extension APIQuestionParser on API.Question {
+extension ServiceQuestionParser on Question {
+  static Question fromAPIQuestion(api.Question question) => Question(
+        id: question.id,
+        userPropertyId: question.userPropertyId,
+        label: question.text,
+      );
 
-  static API.Question fromServiceQuestion(Question question) => API.Question(
-      id: question.id,
-      userPropertyId: question.userPropertyId,
-      text: question.label
-  );
+  api.Question toAPIQuestion() => api.Question(
+        id: id,
+        userPropertyId: userPropertyId,
+        text: label,
+      );
+}
+
+extension APIQuestionParser on api.Question {
+  static api.Question fromServiceQuestion(Question question) => api.Question(
+        id: question.id,
+        userPropertyId: question.userPropertyId,
+        text: question.label,
+      );
 
   Question toServiceQuestion() => Question(
-      id: this.id,
-      userPropertyId: this.userPropertyId,
-      label: this.text
-  );
-
+        id: id,
+        userPropertyId: userPropertyId,
+        label: text,
+      );
 }

@@ -2,21 +2,21 @@ part of questionnaire_service;
 
 extension QuestionnaireElementParser on QuestionnaireElement {
   static QuestionnaireElement fromAPIQuestion(
-          API.QuestionnaireElement element) =>
+          api.QuestionnaireElement element) =>
       QuestionnaireElement(
           questionId: element.questionId,
           index: element.index,
           dependency: element.dependsOn.toServiceFilter());
-  API.QuestionnaireElement toAPIQuestion() => API.QuestionnaireElement(
+  api.QuestionnaireElement toAPIQuestion() => api.QuestionnaireElement(
       questionId: questionId,
       index: index,
       dependsOn: dependency!.toQuestionnaireAPIFilter());
 }
 
-extension APIQuestionnaireElementParser on API.QuestionnaireElement {
-  static API.QuestionnaireElement fromServiceQuestion(
+extension APIQuestionnaireElementParser on api.QuestionnaireElement {
+  static api.QuestionnaireElement fromServiceQuestion(
           QuestionnaireElement element) =>
-      API.QuestionnaireElement(
+      api.QuestionnaireElement(
           questionId: element.questionId,
           index: element.index,
           dependsOn: element.dependency!.toQuestionnaireAPIFilter());
