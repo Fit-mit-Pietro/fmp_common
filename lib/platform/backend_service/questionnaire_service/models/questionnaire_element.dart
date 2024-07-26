@@ -1,8 +1,14 @@
 part of questionnaire_service;
 
-class QuestionnaireElement{
+@JsonSerializable()
+class QuestionnaireElement {
+  @JsonKey(name: 'question_id')
   String questionId;
+
+  @JsonKey(name: 'index')
   int index;
+
+  @JsonKey(name: 'depends_on')
   Filter? dependency;
 
   QuestionnaireElement({
@@ -10,6 +16,11 @@ class QuestionnaireElement{
     required this.index,
     this.dependency,
   });
+
+  factory QuestionnaireElement.fromJson(Map<String, dynamic> json) =>
+      _$QuestionnaireElementFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuestionnaireElementToJson(this);
 
   @override
   String toString() {

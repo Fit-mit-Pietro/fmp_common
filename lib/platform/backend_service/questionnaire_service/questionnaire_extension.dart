@@ -43,7 +43,7 @@ extension SwaggerQuestionnaireFilterFieldValueTypeExtension on FieldValueType {
         return swagger_enums.FieldType.fullText;
       case FieldValueType.bodyMap:
         return swagger_enums.FieldType.bodyMap;
-      case FieldValueType.enumValue:
+      case FieldValueType.$enum:
         return swagger_enums.FieldType.$enum;
       case FieldValueType.datesInWeek:
         return swagger_enums.FieldType.datesInWeek;

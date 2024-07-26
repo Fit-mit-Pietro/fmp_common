@@ -19,8 +19,6 @@ export 'ui/widgets/body_map_widget/switchable_body_canvas.dart';
 export 'platform/model_services/user/local_user_service.dart';
 export 'platform/backend_service/exercise_service/exercise_service.dart';
 export 'platform/backend_service/question_service/question_service.dart';
-export 'platform/backend_service/exercise_service/exercise_service.dart';
-export 'platform/backend_service/questionnaire_service/questionnaire_service.dart';
 export 'platform/navigation/routing/routing.dart';
 
 export 'platform/navigation/routing/transition_mode.dart';

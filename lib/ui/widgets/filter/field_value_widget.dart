@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 
@@ -9,26 +7,25 @@ import 'package:fmp_common/ui/widgets/filter/field_value_widget_int.dart';
 import 'package:fmp_common/ui/widgets/filter/field_value_widget_text.dart';
 
 class FieldValueWidget extends StatelessWidget {
-
   Function(dynamic) onValueChanged;
   Field field;
   dynamic value;
 
-  FieldValueWidget({
-    Key? key,
-    required this.onValueChanged,
-    required this.field,
-    required this.value
-  }) : super(key: key);
+  FieldValueWidget(
+      {Key? key,
+      required this.onValueChanged,
+      required this.field,
+      required this.value})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    switch(field.type){
+    switch (field.type) {
       case FieldValueType.bool:
         bool _value = false;
-        try{
+        try {
           _value = value as bool;
-        }catch(e){
+        } catch (e) {
           print(e);
         }
 
@@ -37,11 +34,10 @@ class FieldValueWidget extends StatelessWidget {
           value: _value,
         );
       case FieldValueType.int:
-
         int _value = 0;
-        try{
+        try {
           _value = value as int;
-        }catch(e){
+        } catch (e) {
           print(e);
         }
 
@@ -50,27 +46,24 @@ class FieldValueWidget extends StatelessWidget {
           value: _value,
         );
       case FieldValueType.text:
-
         String _value = "";
-        try{
+        try {
           _value = value as String;
-        }catch(e){
+        } catch (e) {
           print(e);
         }
 
         return FieldWidgetValueText(
           onValueChanged: onValueChanged,
-          value:_value,
+          value: _value,
         );
       case FieldValueType.bodyMap:
         return const Text("Bodymap not supported!");
-      case FieldValueType.enumValue:
-
+      case FieldValueType.$enum:
         String _value = "";
-        try{
+        try {
           _value = value as String;
-
-        }catch(e){
+        } catch (e) {
           print(e);
         }
         return FieldValueWidgetEnum(
@@ -83,7 +76,3 @@ class FieldValueWidget extends StatelessWidget {
     }
   }
 }
-
-
-
-

@@ -1,43 +1,55 @@
 part of filter_lib;
 
 enum FieldValueType {
+  @JsonValue("BOOL")
   bool,
+  @JsonValue("INT")
   int,
+  @JsonValue("TEXT")
   text,
+  @JsonValue("BODY_MAP")
   bodyMap,
-  enumValue,
+  @JsonValue("ENUM")
+  $enum,
+  @JsonValue("DATES_IN_WEEK")
   datesInWeek,
 }
 
+@JsonSerializable()
 class Field {
-  FieldValueType type;
-  String label;
+  @JsonKey(name: "id")
   String id;
+  @JsonKey(name: "type")
+  FieldValueType type;
+  @JsonKey(name: "label")
+  String label;
+
+  @JsonKey(name: "property_options")
+  Map<String, String>? enumValues;
+
+  factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
+  Map<String, dynamic> toJson() => _$FieldToJson(this);
 
   @override
   String toString() {
     return 'Field{type: $type, label: $label, id: $id, enumValues: $enumValues}';
   }
 
-  Map<String, String>? enumValues;
-
   Field({
     required this.type,
     required this.label,
     required this.id,
-    Map<String, String>? enumValues,
-  }) {
-    //assert(!(type == FieldValueType.enumValue && enumValues == null),"Please add values for enum!");
-    this.enumValues = enumValues;
-  }
+    this.enumValues,
+  });
 }
 
 extension UserPropertyFieldExtension on UserProperty {
   Field toField() => Field(
-      type: fromUserPropertyType(this.propertyType),
-      label: label,
-      id: id,
-      enumValues: this.propertyOptions);
+        type: fromUserPropertyType(propertyType),
+        label: label,
+        id: id,
+        enumValues: propertyOptions,
+      );
 
   static FieldValueType fromUserPropertyType(UserPropertyType type) {
     switch (type) {
@@ -50,7 +62,7 @@ extension UserPropertyFieldExtension on UserProperty {
       case UserPropertyType.BODY_MAP:
         return FieldValueType.bodyMap;
       case UserPropertyType.ENUM:
-        return FieldValueType.enumValue;
+        return FieldValueType.$enum;
       case UserPropertyType.DATES_IN_WEEK:
         return FieldValueType.datesInWeek;
     }

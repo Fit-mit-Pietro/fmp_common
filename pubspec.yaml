@@ -6,27 +6,26 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 # ----------------------
 
 dependencies:
   fmp_api_clients:
     path: ../fmp_api_clients
-  fmp_question_service_api:
-    path: ../fmp_question_service_api
-  fmp_questionnaire_service_api:
-    path: ../fmp_questionnaire_service_api
-  fmp_user_property_service_api:
-    path: ../fmp_user_property_service_api
-  fmp_exercise_service_api:
-    path: ../fmp_exercise_service_api
+  # fmp_question_service_api:
+  #   path: ../fmp_question_service_api
+  # fmp_questionnaire_service_api:
+  #   path: ../fmp_questionnaire_service_api
+  # fmp_user_property_service_api:
+  #   path: ../fmp_user_property_service_api
+  # fmp_exercise_service_api:
+  #   path: ../fmp_exercise_service_api
 
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
   http: ^0.13.4
-  json_annotation: ^4.3.0 # flutter pub run build_runner build
   video_player: 2.4.7
 
   #for password cache
@@ -38,6 +37,8 @@ dependencies:
   xml: ^5.3.1
   # openapi_generator: ^3.3.0+1
   uuid: 3.0.6
+  chopper: ^6.1.4
+  json_annotation: ^4.9.0 # flutter pub run build_runner build
 
 # ----------------------
 

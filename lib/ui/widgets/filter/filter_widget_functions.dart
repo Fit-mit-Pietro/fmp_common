@@ -1,13 +1,8 @@
-
-
-
 import 'package:fmp_common/platform/backend_service/filter/filter_lib.dart';
 
-class FilterWidgetFunctions{
-
-  String getLabelOfOperation(FilterOperation operation){
-    switch(operation){
-
+mixin FilterWidgetFunctions {
+  String getLabelOfOperation(FilterOperation operation) {
+    switch (operation) {
       case FilterOperation.equal:
         return "ist";
       case FilterOperation.notEqual:
@@ -23,5 +18,4 @@ class FilterWidgetFunctions{
         return "enthält";
     }
   }
-
 }

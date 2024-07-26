@@ -1,11 +1,14 @@
-
-
 part of questionnaire_service;
 
-class Questionnaire implements Identifiable{
-
-  String label;
+@JsonSerializable()
+class Questionnaire implements Identifiable {
+  @JsonKey(name: "id")
   String id;
+
+  @JsonKey(name: "label")
+  String label;
+
+  @JsonKey(name: "elements")
   List<QuestionnaireElement> elements;
 
   // the length of the Questionnaire
@@ -17,14 +20,13 @@ class Questionnaire implements Identifiable{
     required this.elements,
   });
 
-  factory Questionnaire.createNew({
-    String label = "Neuer Fragebogen"
-  }) => Questionnaire(
-      id: IdService.getId(),
-      elements: [],
-      label: label
-  );
+  factory Questionnaire.fromJson(Map<String, dynamic> json) =>
+      _$QuestionnaireFromJson(json);
 
+  Map<String, dynamic> toJson() => _$QuestionnaireToJson(this);
+
+  factory Questionnaire.createNew({String label = "Neuer Fragebogen"}) =>
+      Questionnaire(id: IdService.getId(), elements: [], label: label);
 
   @override
   String toString() {

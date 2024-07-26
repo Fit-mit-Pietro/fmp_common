@@ -12,15 +12,15 @@ part 'user_service_mock.dart';
 part 'user_service_real.dart';
 part 'i_user_service.dart';
 
+enum UserServiceType { mock, real }
 
-enum UserServiceType {mock,real}
-
-class UserService{
+class UserService {
   UserService._();
+
   static late IUserService instance;
 
-  static Future init(UserServiceType userServiceType,UserServiceConfig config) async{
-    instance = IUserService(userServiceType,config);
+  static Future init(
+      UserServiceType userServiceType, UserServiceConfig config) async {
+    instance = IUserService(userServiceType, config);
   }
-
 }

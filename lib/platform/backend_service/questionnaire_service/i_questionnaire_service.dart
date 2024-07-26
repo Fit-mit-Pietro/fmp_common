@@ -8,7 +8,7 @@ abstract class IQuestionnaireService
       case QuestionnaireServiceType.mock:
         return _QuestionnaireServiceMock(config);
       case QuestionnaireServiceType.real:
-        return _QuestionnaireServiceReal(config);
+        return _QuestionnaireServiceReal_Rework(config);
       case QuestionnaireServiceType.rework:
         return _QuestionnaireServiceReal_Rework(config);
     }

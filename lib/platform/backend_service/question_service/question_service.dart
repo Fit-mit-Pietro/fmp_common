@@ -1,15 +1,17 @@
 library question_service;
 
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
+import 'package:fmp_common/platform/backend_service/auth_interceptor.dart';
 import 'package:fmp_common/platform/backend_service/crud_template_service/crud_template_service.dart';
 
 import 'package:fmp_common/platform/util/id_service.dart';
-import 'package:fmp_question_service_api/api.dart' as api;
+// import 'package:fmp_question_service_api/api.dart' as api;
 
 import 'package:fmp_api_clients/swagger_generated_code/question_service_api.swagger.dart'
     as swagger;
+import 'package:json_annotation/json_annotation.dart';
 
 part 'question_service_config.dart';
 part 'question_service_mock.dart';
@@ -18,6 +20,7 @@ part 'i_question_service.dart';
 part 'question_extension.dart';
 part 'question.dart';
 part 'question_service_real_rework.dart';
+part 'question_service.g.dart';
 
 enum QuestionServiceType {
   mock,
