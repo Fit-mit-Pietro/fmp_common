@@ -46,7 +46,7 @@ class _QuestionnaireServiceReal_Rework implements IQuestionnaireService {
   Future<FilledQuestionnaire> getFilledQuestionnaireById(String id) async {
     final response =
         await _api.filledQuestionnaireQuestionnaireIdGet(questionnaireId: id);
-    if (response.isSuccessful) {
+    if (response.isSuccessful == false) {
       throw UnimplementedError();
     }
 
