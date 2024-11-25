@@ -7,16 +7,19 @@ import 'package:fmp_common/ui/screens/auth_screens/screen_register.dart';
 import 'package:fmp_common/ui/widgets/auth_screens/auth_error_text.dart';
 import 'package:fmp_common/ui/widgets/buttons/button_icon_text.dart';
 
-class ScreenLogIn extends StatefulWidget {
-  const ScreenLogIn({Key? key}) : super(key: key);
-
-  @override
-  _ScreenLogInState createState() => _ScreenLogInState();
+enum LogInState {
+  noRequestSend,
+  waitingForResult,
 }
 
-enum LogInState { noRequestSend, waitingForResult }
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-class _ScreenLogInState extends State<ScreenLogIn> {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
@@ -32,34 +35,36 @@ class _ScreenLogInState extends State<ScreenLogIn> {
   }
 
   void _onLoginButtonPressed() async {
-    if (_formKey.currentState!.validate()) {
-      String email = emailTextController.text.trim();
-      String password = passwordTextController.text;
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
-      setState(() {
+    String email = emailTextController.text.trim();
+    String password = passwordTextController.text;
+
+    setState(() {
+      _logInState = LogInState.waitingForResult;
+    });
+
+    UserLoginResult result =
+        await LocalUserService.instance.login(email, password);
+    lastLoginState = result.status;
+
+    setState(() {
+      // keep loading indicator if successful as screen transition will follow
+      if (lastLoginState == UserLoginResultStatus.successful) {
         _logInState = LogInState.waitingForResult;
-      });
-
-      UserLoginResult result =
-          await LocalUserService.instance.login(email, password);
-      lastLoginState = result.status;
-
-      setState(() {
-        // keep loading indicator if successful as screen transition will follow
-        if (lastLoginState == UserLoginResultStatus.successful) {
-          _logInState = LogInState.waitingForResult;
-        } else {
-          _logInState = LogInState.noRequestSend;
-        }
-      });
-
-      LocalUserState localUserState = LocalUserService.instance.localUserState;
-      if (localUserState != LocalUserState.loggedOut) {
-        // wait for log in successfull message
-        await Future.delayed(const Duration(seconds: 1));
-        UserStateNavigationService.instance
-            .navigateAccordingToUserState(localUserState);
+      } else {
+        _logInState = LogInState.noRequestSend;
       }
+    });
+
+    LocalUserState localUserState = LocalUserService.instance.localUserState;
+    if (localUserState != LocalUserState.loggedOut) {
+      // wait for log in successfull message
+      await Future.delayed(const Duration(seconds: 1));
+      UserStateNavigationService.instance
+          .navigateAccordingToUserState(localUserState);
     }
   }
 

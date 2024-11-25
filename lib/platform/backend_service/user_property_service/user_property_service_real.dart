@@ -7,7 +7,7 @@ class _UserPropertyServiceReal implements IUserPropertyService {
   _UserPropertyServiceReal(UserPropertyServiceConfig config)
       : _api = swagger.UserPropertyApi.create(
           interceptors: [AuthInterceptor(token: _kToken)],
-          baseUrl: Uri.parse(config.SERVICE_URL),
+          baseUrl: Uri.parse(config.serviceUrl),
         );
 
   final swagger.UserPropertyApi _api;

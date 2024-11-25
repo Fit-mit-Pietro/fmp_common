@@ -53,17 +53,17 @@ extension UserPropertyFieldExtension on UserProperty {
 
   static FieldValueType fromUserPropertyType(UserPropertyType type) {
     switch (type) {
-      case UserPropertyType.BOOL:
+      case UserPropertyType.bool:
         return FieldValueType.bool;
-      case UserPropertyType.INT:
+      case UserPropertyType.int:
         return FieldValueType.int;
-      case UserPropertyType.FULL_TEXT:
+      case UserPropertyType.fullText:
         return FieldValueType.text;
-      case UserPropertyType.BODY_MAP:
+      case UserPropertyType.bodyMap:
         return FieldValueType.bodyMap;
-      case UserPropertyType.ENUM:
+      case UserPropertyType.$enum:
         return FieldValueType.$enum;
-      case UserPropertyType.DATES_IN_WEEK:
+      case UserPropertyType.datesInWeek:
         return FieldValueType.datesInWeek;
     }
   }

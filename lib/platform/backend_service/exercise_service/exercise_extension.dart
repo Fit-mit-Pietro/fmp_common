@@ -26,19 +26,19 @@ extension SwagggerExerciseExtension on swagger.Exercise {
 
 extension ExerciseTypeSwaggerExtension on ExerciseType {
   swagger.ExerciseExerciseType toSwagger() => switch (this) {
-        ExerciseType.ENDURANCE => swagger.ExerciseExerciseType.endurance,
-        ExerciseType.MUSCLE_BUILDING =>
+        ExerciseType.endurance => swagger.ExerciseExerciseType.endurance,
+        ExerciseType.muscleBuilding =>
           swagger.ExerciseExerciseType.muscleBuilding,
-        ExerciseType.STRENGTH => swagger.ExerciseExerciseType.strength,
-        ExerciseType.STRENGTH_ENDURANCE =>
+        ExerciseType.strength => swagger.ExerciseExerciseType.strength,
+        ExerciseType.strengthEndurance =>
           swagger.ExerciseExerciseType.strengthEndurance,
-        ExerciseType.MAXIMUM_STRENGTH =>
+        ExerciseType.maximumStrength =>
           swagger.ExerciseExerciseType.maximumStrength,
-        ExerciseType.QUICK_STRENGTH =>
+        ExerciseType.quickStrength =>
           swagger.ExerciseExerciseType.quickStrength,
-        ExerciseType.FLEXIBILITY => swagger.ExerciseExerciseType.flexibility,
-        ExerciseType.BALANCE => swagger.ExerciseExerciseType.balance,
-        ExerciseType.RELAXATION => swagger.ExerciseExerciseType.relaxation,
+        ExerciseType.flexibility => swagger.ExerciseExerciseType.flexibility,
+        ExerciseType.balance => swagger.ExerciseExerciseType.balance,
+        ExerciseType.relaxation => swagger.ExerciseExerciseType.relaxation,
       };
 }
 
@@ -46,19 +46,19 @@ extension SwaggerExerciseTypeExtension on swagger.ExerciseExerciseType {
   ExerciseType toNative() => switch (this) {
         swagger.ExerciseExerciseType.swaggerGeneratedUnknown =>
           throw UnimplementedError(),
-        swagger.ExerciseExerciseType.endurance => ExerciseType.ENDURANCE,
+        swagger.ExerciseExerciseType.endurance => ExerciseType.endurance,
         swagger.ExerciseExerciseType.muscleBuilding =>
-          ExerciseType.MUSCLE_BUILDING,
-        swagger.ExerciseExerciseType.strength => ExerciseType.STRENGTH,
+          ExerciseType.muscleBuilding,
+        swagger.ExerciseExerciseType.strength => ExerciseType.strength,
         swagger.ExerciseExerciseType.strengthEndurance =>
-          ExerciseType.STRENGTH_ENDURANCE,
+          ExerciseType.strengthEndurance,
         swagger.ExerciseExerciseType.maximumStrength =>
-          ExerciseType.MAXIMUM_STRENGTH,
+          ExerciseType.maximumStrength,
         swagger.ExerciseExerciseType.quickStrength =>
-          ExerciseType.QUICK_STRENGTH,
-        swagger.ExerciseExerciseType.flexibility => ExerciseType.FLEXIBILITY,
-        swagger.ExerciseExerciseType.balance => ExerciseType.BALANCE,
-        swagger.ExerciseExerciseType.relaxation => ExerciseType.RELAXATION,
+          ExerciseType.quickStrength,
+        swagger.ExerciseExerciseType.flexibility => ExerciseType.flexibility,
+        swagger.ExerciseExerciseType.balance => ExerciseType.balance,
+        swagger.ExerciseExerciseType.relaxation => ExerciseType.relaxation,
       };
 }
 

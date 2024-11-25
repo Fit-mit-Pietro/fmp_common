@@ -12,7 +12,7 @@ class Questionnaire implements Identifiable {
   List<QuestionnaireElement> elements;
 
   // the length of the Questionnaire
-  int get length => elements.length ?? 0;
+  int get length => elements.length;
 
   Questionnaire({
     required this.id,

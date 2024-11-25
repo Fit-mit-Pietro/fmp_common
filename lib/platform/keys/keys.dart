@@ -1,50 +1,44 @@
+class Keys {
+  static const String id = "id";
+  static const String label = "label";
+  static const String selected = "selected";
 
+  static const String keyHttpBodyUser = "userdata";
+  static const String keyHttpBodyToken = "bearer";
 
-class Keys{
+  static const String keyTokenAccessToken = "access_token";
 
-  static const String ID = "id";
-  static const String LABEL = "label";
-  static const String SELECTED = "selected";
+  static const String userUserName = "username";
+  static const String userFamilyName = "familyname";
+  static const String userFirstName = "firstname";
+  static const String userEmail = "email";
+  static const String userPassword = "password";
 
-  static const String KEY_HTTP_BODY_USER = "userdata";
-  static const String KEY_HTTP_BODY_TOKEN = "bearer";
+  static const String questionId = "q_id";
+  static const String questionDependsOn = "depends_on";
+  static const String questionAnswerType = "q_type";
+  static const String questionAnswer = "answer";
+  static const String questionQuestionText = "q_text";
 
-  static const String KEY_TOKEN_ACCESS_TOKEN = "access_token";
+  static const String questionIntUnit = "q_unit";
+  static const String questionEnumOptions = "q_options";
 
-  static const String USER_USER_NAME = "username";
-  static const String USER_FAMILY_NAME= "familyname";
-  static const String USER_FIRST_NAME = "firstname";
-  static const String USER_EMAIL = "email";
-  static const String USER_PASSWORD = "password";
+  static const String bodyPartImageKeys = "image_keys";
+  static const String bodySelectorPartsFront = "parts_front";
+  static const String bodySelectorPartsBack = "parts_back";
+  static const String bodySelectorBodyPartLabel = "label";
+  static const String bodySelectorBodyPartSymptoms = "symptoms";
 
-  static const String QUESTION_ID = "q_id";
-  static const String QUESTION_DEPENDS_ON = "depends_on";
-  static const String QUESTION_ANSWER_TYPE = "q_type";
-  static const String QUESTION_ANSWER = "answer";
-  static const String QUESTION_QUESTION_TEXT = "q_text";
+  static const String queryKey = "key";
+  static const String queryResult = "result";
+  static const String queryHeight = "height";
+  static const String queryWeight = "weight";
+  static const String queryGender = "gender";
+  static const String queryGeneralFields = "general";
+  static const String queryAge = "age";
 
-  static const String QUESTION_INT_UNIT = "q_unit";
-  static const String QUESTION_ENUM_OPTIONS = "q_options";
-
-  static const String BODY_PART_IMAGE_KEYS = "image_keys";
-  static const String BODY_SELECTOR_PARTS_FRONT = "parts_front";
-  static const String BODY_SELECTOR_PARTS_BACK = "parts_back";
-  static const String BODY_SELECTOR_BODY_PART_LABEL = "label";
-  static const String BODY_SELECTOR_BODY_PART_SYMPTOMS = "symptoms";
-  
-  
-  static const String QUERY_KEY = "key";
-  static const String QUERY_RESULT = "result";
-  static const String QUERY_HEIGHT = "height";
-  static const String QUERY_WEIGHT = "weight";
-  static const String QUERY_GENDER = "gender";
-  static const String QUERY_GENERAL_FIELDS = "general";
-  static const String QUERY_AGE = "age";
-
-
-  static const String WEEK_DAY = "week_day";
-  static const String HOUR = "hour";
-  static const String MINUTE = "minute";
-  static const String DURATION = "duration";
-
+  static const String weekDay = "week_day";
+  static const String hour = "hour";
+  static const String minute = "minute";
+  static const String duration = "duration";
 }

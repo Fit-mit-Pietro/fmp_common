@@ -1,17 +1,20 @@
-
-
-
+import 'package:flutter/foundation.dart';
 import 'package:fmp_common/platform/backend_service/user_service/user_service.dart';
 import 'package:fmp_common/platform/models/user_service/user.dart';
 import 'package:fmp_common/platform/models/user_service/user_login_result.dart';
 import 'package:fmp_common/platform/models/user_service/user_register_result.dart';
 import 'package:fmp_common/platform/persistence/secure_storage_service.dart';
 
-enum LocalUserState {loggedOut,loggedIn,unverified}
+const bool _kAutoLogin = true;
+
+enum LocalUserState {
+  loggedOut,
+  loggedIn,
+  unverified,
+}
 
 // this class will also take care to cache a users credentials
-class LocalUserService{
-
+class LocalUserService extends ChangeNotifier {
   LocalUserService._();
 
   String? userToken;
@@ -22,102 +25,112 @@ class LocalUserService{
   LocalUserState _localUserState = LocalUserState.loggedOut;
   LocalUserState get localUserState => _localUserState;
 
-  static Future init() async{
+  void _updateState(LocalUserState newState) {
+    if (_localUserState == newState) {
+      return;
+    }
+
+    _localUserState = newState;
+    notifyListeners();
+  }
+
+  static Future init() async {
     instance = LocalUserService._();
   }
 
   static late LocalUserService instance;
 
-  Future<LocalUserState> tryToLoadSavedUser() async{
-    String? email = await SecureStorageService.instance.readValue(SSSKeys.KEY_USER_EMAIL);
-    String? password = await SecureStorageService.instance.readValue(SSSKeys.KEY_USER_PASSWORD);
-    if(email != null && password!=null){
+  Future<LocalUserState> tryToLoadSavedUser() async {
+    String? email =
+        await SecureStorageService.instance.readValue(SSSKeys.email);
+    String? password =
+        await SecureStorageService.instance.readValue(SSSKeys.password);
+    if (email != null && password != null) {
       await login(email, password);
-    }else{
-      _localUserState = LocalUserState.loggedOut;
+    } else if (kDebugMode && _kAutoLogin) {
+      await login('j.kelsch@neox-studios.de', '!Nailuj32*!');
+    } else {
+      _updateState(LocalUserState.loggedOut);
     }
     return _localUserState;
-
   }
 
-  Future<UserLoginResult> login(String email,String password) async{
+  Future<UserLoginResult> login(String email, String password) async {
     UserLoginResult result = await UserService.instance.login(email, password);
-    if(result.status == UserLoginResultStatus.successful){
-      await onUserLoggedInSuccessful(result,password);
-    }else{
+    if (result.status == UserLoginResultStatus.successful) {
+      await onUserLoggedInSuccessful(result, password);
+    } else {
       onUserLoggedInFailed(result);
     }
-
 
     return result;
   }
 
-  Future onUserLoggedInSuccessful(UserLoginResult result,String password) async{
-    if(result.token != null && result.user != null){
+  Future<void> onUserLoggedInSuccessful(
+      UserLoginResult result, String password) async {
+    if (result.token == null || result.user == null) {
+      _updateState(LocalUserState.loggedOut);
 
-      userToken = result.token;
-      // print(userToken);
-      _localUserState = LocalUserState.loggedIn;
-      _user = result.user;
-
-      await SecureStorageService.instance.storeValue(SSSKeys.KEY_USER_EMAIL, result.user!.email);
-      await SecureStorageService.instance.storeValue(SSSKeys.KEY_USER_PASSWORD, password);
-
-      print("User successfully logged in");
-
-    }else{
-      _localUserState = LocalUserState.loggedOut;
       print("Error: login successful but no token or user");
+      return;
     }
+
+    userToken = result.token;
+    _user = result.user;
+    _updateState(LocalUserState.loggedIn);
+
+    notifyListeners();
+
+    await SecureStorageService.instance
+        .storeValue(SSSKeys.email, result.user!.email);
+    await SecureStorageService.instance.storeValue(SSSKeys.password, password);
+
+    print("User successfully logged in");
   }
 
-  void onUserLoggedInFailed(UserLoginResult result){
-    _localUserState = LocalUserState.loggedOut;
+  void onUserLoggedInFailed(UserLoginResult result) {
+    _updateState(LocalUserState.loggedOut);
   }
 
-  Future onUserRegisteredSuccessful(UserRegisterResult result,String password,String email) async{
-    await login(email,password);
+  Future<void> onUserRegisteredSuccessful(
+      UserRegisterResult result, String password, String email) async {
+    await login(email, password);
   }
 
-  Future onUserRegisteredFailed(UserRegisterResult result) async{
+  Future onUserRegisteredFailed(UserRegisterResult result) async {}
 
-  }
-
-  Future<LocalUserState> delete() async{
-
+  Future<LocalUserState> delete() async {
     await logOut();
 
-    if(userToken != null){
+    if (userToken != null) {
       await UserService.instance.delete(userToken!);
-    }else{
+    } else {
       print("Cant delete user as token is null");
     }
 
     return _localUserState;
-
   }
 
-  Future<LocalUserState> logOut() async{
-    _localUserState = LocalUserState.loggedOut;
+  Future<LocalUserState> logOut() async {
+    _updateState(LocalUserState.loggedOut);
 
-    await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_EMAIL);
-    await SecureStorageService.instance.deleteValue(SSSKeys.KEY_USER_PASSWORD);
+    await SecureStorageService.instance.deleteValue(SSSKeys.email);
+    await SecureStorageService.instance.deleteValue(SSSKeys.password);
 
     return _localUserState;
   }
 
-
-  Future<UserRegisterResult> register(User user,String userPassword) async {
-    UserRegisterResult result = await UserService.instance.register(user, userPassword);
-    if(result.status == UserRegisterResultStatus.successful){
+  Future<UserRegisterResult> register(User user, String userPassword) async {
+    UserRegisterResult result =
+        await UserService.instance.register(user, userPassword);
+    if (result.status == UserRegisterResultStatus.successful) {
       print("Register successful");
-      await onUserRegisteredSuccessful(result,userPassword,user.email);
-    }else{
+      await onUserRegisteredSuccessful(result, userPassword, user.email);
+    } else {
       print("Register failed");
 
       await onUserRegisteredFailed(result);
     }
     return result;
   }
-
 }

@@ -1,10 +1,9 @@
-
 import 'package:uuid/uuid.dart';
 
-class IdService{
+class IdService {
   static const _uuid = Uuid();
 
-  static String getId(){
+  static String getId() {
     return _uuid.v1();
   }
 }

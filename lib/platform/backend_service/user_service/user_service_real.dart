@@ -5,28 +5,29 @@ class _UserServiceReal implements IUserService {
 
   _UserServiceReal(this._config);
 
+  final Duration _timeoutDuration = const Duration(seconds: 15);
+
   @override
   Future<User?> get(String token) {
-    // TODO: implement get
     throw UnimplementedError();
   }
 
   Uri _getUriForEndpoint(String endpoint) {
-    return Uri.parse(_config.SERVICE_URL + endpoint);
+    return Uri.parse(_config.serviceUrl + endpoint);
   }
 
   @override
   Future delete(String token) async {
+    // TODO: (Julian) We need to add error handling here and define a return type
     print(token);
-    String bearerAuth = 'Bearer ' + token;
 
     try {
       http.Response response = await http.delete(
-        _getUriForEndpoint(_config.USER_SERVICE_ENDPOINT_USER_DELETE),
+        _getUriForEndpoint(_config.deleteUserEndpoint),
         headers: {
-          HttpHeaders.authorizationHeader: bearerAuth,
+          HttpHeaders.authorizationHeader: 'Bearer $token',
         },
-      ).timeout(const Duration(milliseconds: 10000));
+      ).timeout(_timeoutDuration);
 
       print(response.statusCode);
       print(response.body);
@@ -51,11 +52,11 @@ class _UserServiceReal implements IUserService {
     print("Starting to log in");
     try {
       http.Response response = await http.get(
-        _getUriForEndpoint(_config.USER_SERVICE_ENDPOINT_USER_LOG_IN),
+        _getUriForEndpoint(_config.loginEndpoint),
         headers: {
           HttpHeaders.authorizationHeader: basicAuth,
         },
-      ).timeout(const Duration(milliseconds: 15000));
+      ).timeout(_timeoutDuration);
       print("Response status code: ${response.statusCode}");
       if (response.statusCode == 400) {
         return UserLoginResult(UserLoginResultStatus.userCorrupted);
@@ -63,15 +64,15 @@ class _UserServiceReal implements IUserService {
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonBody = jsonDecode(response.body);
 
-        Map<String, dynamic> userJson = jsonBody[Keys.KEY_HTTP_BODY_USER];
-        userJson[Keys.USER_EMAIL] = userEmail;
+        Map<String, dynamic> userJson = jsonBody[Keys.keyHttpBodyUser];
+        userJson[Keys.userEmail] = userEmail;
 
         print("User json: $userJson");
         User user = User.fromJson(userJson);
         print("User: ${user.toJson()}");
 
-        Map<String, dynamic> tokenJson = jsonBody[Keys.KEY_HTTP_BODY_TOKEN];
-        String token = tokenJson[Keys.KEY_TOKEN_ACCESS_TOKEN];
+        Map<String, dynamic> tokenJson = jsonBody[Keys.keyHttpBodyToken];
+        String token = tokenJson[Keys.keyTokenAccessToken];
 
         return UserLoginResult(
           UserLoginResultStatus.successful,
@@ -96,35 +97,46 @@ class _UserServiceReal implements IUserService {
   @override
   Future<UserRegisterResult> register(User user, String userPassword) async {
     String username = user.email;
-    String basicAuth =
-        'Basic ' + base64Encode(utf8.encode('$username:$userPassword'));
 
-    Map<String, String> json = {
+    final basicAuth =
+        'Basic ${base64Encode(utf8.encode('$username:$userPassword'))}';
+
+    final json = <String, String>{
       "username": user.username,
       "familyname": user.familyName,
-      "firstname": user.firstName
+      "firstname": user.firstName,
     };
 
     try {
-      http.Response response = await http
-          .post(_getUriForEndpoint(_config.USER_SERVICE_ENDPOINT_USER_REGISTER),
-              headers: {
-                HttpHeaders.authorizationHeader: basicAuth,
-                HttpHeaders.contentTypeHeader: 'application/json',
-              },
-              body: jsonEncode(json))
-          .timeout(const Duration(milliseconds: 10000));
+      final http.Response response = await http
+          .post(
+            _getUriForEndpoint(_config.registerEndpoint),
+            headers: {
+              HttpHeaders.authorizationHeader: basicAuth,
+              HttpHeaders.contentTypeHeader: 'application/json',
+            },
+            body: jsonEncode(json),
+          )
+          .timeout(_timeoutDuration);
 
-      if (response.statusCode == 400) {
-        return UserRegisterResult(UserRegisterResultStatus.userAlreadyExists);
-      }
-      if (response.statusCode == 201) {
-        return UserRegisterResult(UserRegisterResultStatus.successful);
-      }
+      return switch (response.statusCode) {
+        >= 200 && <= 299 =>
+          const UserRegisterResult(UserRegisterResultStatus.successful),
+        >= 300 && <= 399 =>
+          const UserRegisterResult(UserRegisterResultStatus.unknownError),
+        400 =>
+          const UserRegisterResult(UserRegisterResultStatus.userAlreadyExists),
+        >= 401 && <= 499 =>
+          const UserRegisterResult(UserRegisterResultStatus.unknownError),
+        >= 500 && <= 599 => const UserRegisterResult(
+            UserRegisterResultStatus.unableToReachServer),
+        _ => const UserRegisterResult(UserRegisterResultStatus.unknownError)
+      };
     } on SocketException {
-      return UserRegisterResult(UserRegisterResultStatus.unableToReachServer);
+      return const UserRegisterResult(
+          UserRegisterResultStatus.unableToReachServer);
+    } catch (_) {
+      return const UserRegisterResult(UserRegisterResultStatus.unknownError);
     }
-
-    return UserRegisterResult(UserRegisterResultStatus.unknownError);
   }
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:fmp_common/fmp_common.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -7,20 +5,19 @@ part 'body_part.g.dart';
 
 @JsonSerializable()
 class BodyPart {
-
-  @JsonKey(name: Keys.ID)
+  @JsonKey(name: Keys.id)
   String id;
 
-  @JsonKey(name: Keys.BODY_PART_IMAGE_KEYS)
+  @JsonKey(name: Keys.bodyPartImageKeys)
   List<String>? imageKeys;
 
-  @JsonKey(name: Keys.BODY_SELECTOR_BODY_PART_LABEL)
+  @JsonKey(name: Keys.bodySelectorBodyPartLabel)
   String label;
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   late String path;
 
-  @JsonKey(name: Keys.BODY_SELECTOR_BODY_PART_SYMPTOMS)
+  @JsonKey(name: Keys.bodySelectorBodyPartSymptoms)
   List<String> possibleSymptomKeys;
 
   BodyPart({
@@ -37,7 +34,7 @@ class BodyPart {
 
   static BodyPart copy(BodyPart part) {
     List<String>? copiedImageKeys;
-    if(part.imageKeys != null){
+    if (part.imageKeys != null) {
       copiedImageKeys = List.of(part.imageKeys!);
     }
     return BodyPart(
@@ -46,5 +43,4 @@ class BodyPart {
         imageKeys: copiedImageKeys,
         possibleSymptomKeys: part.possibleSymptomKeys);
   }
-
 }

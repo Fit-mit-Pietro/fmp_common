@@ -8,37 +8,29 @@ import 'package:fmp_common/ui/screens/auth_screens/screen_log_in.dart';
 import 'data/user_state_navigator_global_keys.dart';
 
 class UserStateNavigator implements IUserStateNavigator {
-  late Function update;
-  late Widget _screenHome;
+  late void Function() onUpdate;
+  late Widget _homeScreen;
 
   @override
-  Future? init(Function update, Widget screenHome) {
+  Future<void> init(void Function() onUpdate, Widget homeScreen) async {
     print("Init BaseNavigator");
-    this.update = update;
-    this.update();
-    _screenHome = screenHome;
-    return null;
+    this.onUpdate = onUpdate;
+    this.onUpdate();
+    _homeScreen = homeScreen;
   }
 
   @override
   void navigateAccordingToUserState(LocalUserState state) {
-    dynamic screen;
-
-    switch (state) {
-      case LocalUserState.loggedOut:
-        screen = const ScreenLogIn();
-        break;
-      case LocalUserState.loggedIn:
-        screen = _screenHome;
-        break;
-      case LocalUserState.unverified:
-        screen = const ScreenLogIn();
-        break;
-    }
+    final screen = switch (state) {
+      LocalUserState.loggedOut ||
+      LocalUserState.unverified =>
+        const ScreenLogIn(),
+      LocalUserState.loggedIn => _homeScreen,
+    };
 
     pushReplacement(
         navigator: UserStateNavigatorGlobalKeys.appKey.currentState!,
         screen: screen,
-        mode: TransitionMode.SLIDE_FROM_RIGHT);
+        mode: TransitionMode.slideFromRight);
   }
 }

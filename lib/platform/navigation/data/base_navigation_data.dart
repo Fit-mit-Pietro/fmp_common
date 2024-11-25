@@ -1,9 +1,5 @@
-
-
-
 class BaseNavigationData {
-
-  static const int PAGE_TRANSIT_DURATION_MS = 150;
+  static const Duration pageTransitionDuration = Duration(milliseconds: 150);
 
   /*
   static const Map icon = {

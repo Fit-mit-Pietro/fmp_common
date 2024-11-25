@@ -42,7 +42,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
           : _DeleteState.deletingFailed;
     });
     await Future.delayed(const Duration(milliseconds: 1200));
-    pop(context, data: successful);
+    pop(context, result: successful);
   }
 
   void _onDeleteTest() async {
@@ -50,7 +50,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
       setState(() {
         _currentDeleteState = state;
       });
-      await Future.delayed(Duration(milliseconds: 1200));
+      await Future.delayed(const Duration(milliseconds: 1200));
     }
   }
 
@@ -130,9 +130,9 @@ class _DeleteDialogState extends State<_DeleteDialog> {
   }
 
   Widget _buildDeleting(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children: [
         SizedBox(width: 48, height: 48, child: CircularProgressIndicator()),
         SizedBox(
           height: 4,
@@ -143,9 +143,9 @@ class _DeleteDialogState extends State<_DeleteDialog> {
   }
 
   Widget _buildSuccessful(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children: [
         SizedBox(
             width: 48,
             height: 48,
@@ -197,7 +197,7 @@ class _DeleteDialogState extends State<_DeleteDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-                onPressed: () => pop(context, data: false),
+                onPressed: () => pop(context, result: false),
                 child: const Text("Abbrechen")),
             const SizedBox(
               width: 16,

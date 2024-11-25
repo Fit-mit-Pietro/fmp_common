@@ -11,6 +11,7 @@ import 'package:fmp_common/platform/util/id_service.dart';
 
 import 'package:fmp_api_clients/swagger_generated_code/question_service_api.swagger.dart'
     as swagger;
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'question_service_config.dart';

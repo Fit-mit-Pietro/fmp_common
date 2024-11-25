@@ -1,13 +1,16 @@
-
 import 'package:flutter/material.dart';
 
 class ButtonIconText extends StatelessWidget {
+  const ButtonIconText({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+    required this.icon,
+  }) : super(key: key);
 
   final void Function() onPressed;
   final String text;
   final IconData icon;
-
-  const ButtonIconText({Key? key, required this.onPressed,required this.text,required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,9 @@ class ButtonIconText extends StatelessWidget {
           Text(
             text,
           ),
-          const SizedBox(width: 12,),
+          const SizedBox(
+            width: 12,
+          ),
           Icon(
             icon,
           )

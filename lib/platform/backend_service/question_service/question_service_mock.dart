@@ -2,7 +2,8 @@ part of question_service;
 
 class _QuestionServiceMock extends CRUDTemplateServiceMock<Question>
     implements IQuestionService {
-  QuestionServiceConfig _config;
+  // ignore: unused_field
+  final QuestionServiceConfig _config;
 
   _QuestionServiceMock(this._config) : super(_config) {
     create(Question.createNew(

@@ -1,12 +1,11 @@
-
 part of user_service;
 
-class _UserServiceMock implements IUserService{
-
+class _UserServiceMock implements IUserService {
   final MockBackend _backend;
+  // ignore: unused_field
   final UserServiceConfig _config;
 
-  _UserServiceMock(this._backend,this._config);
+  _UserServiceMock(this._backend, this._config);
 
   @override
   Future<User?> get(String id) {
@@ -21,16 +20,10 @@ class _UserServiceMock implements IUserService{
   @override
   Future<UserRegisterResult> register(User user, String userPassword) {
     return _backend.auth.register(user.email, userPassword);
-
   }
 
   @override
   Future delete(String token) {
-    // TODO: implement delete
     throw UnimplementedError();
   }
-
-
-
-
 }

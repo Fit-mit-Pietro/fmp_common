@@ -14,12 +14,12 @@ extension UserPropertySwaggerExtension on UserProperty {
 
 extension UserPropertyTypeSwaggerExtension on UserPropertyType {
   swagger.UserPropertyType toSwagger() => switch (this) {
-        UserPropertyType.BOOL => swagger.UserPropertyType.bool,
-        UserPropertyType.INT => swagger.UserPropertyType.int,
-        UserPropertyType.FULL_TEXT => swagger.UserPropertyType.fullText,
-        UserPropertyType.BODY_MAP => swagger.UserPropertyType.bodyMap,
-        UserPropertyType.ENUM => swagger.UserPropertyType.$enum,
-        UserPropertyType.DATES_IN_WEEK => swagger.UserPropertyType.datesInWeek,
+        UserPropertyType.bool => swagger.UserPropertyType.bool,
+        UserPropertyType.int => swagger.UserPropertyType.int,
+        UserPropertyType.fullText => swagger.UserPropertyType.fullText,
+        UserPropertyType.bodyMap => swagger.UserPropertyType.bodyMap,
+        UserPropertyType.$enum => swagger.UserPropertyType.$enum,
+        UserPropertyType.datesInWeek => swagger.UserPropertyType.datesInWeek,
       };
 }
 

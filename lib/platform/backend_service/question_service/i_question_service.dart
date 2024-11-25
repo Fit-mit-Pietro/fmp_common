@@ -7,9 +7,9 @@ abstract class IQuestionService implements ICRUDTemplateService<Question> {
       case QuestionServiceType.mock:
         return _QuestionServiceMock(config);
       case QuestionServiceType.real:
-        return _QuestionServiceReal_Rework(config);
+        return _QuestionServiceRealRework(config);
       case QuestionServiceType.rework:
-        return _QuestionServiceReal_Rework(config);
+        return _QuestionServiceRealRework(config);
     }
   }
 }

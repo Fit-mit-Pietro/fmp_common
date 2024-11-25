@@ -19,7 +19,7 @@ enum FilterOperation {
 
 @JsonSerializable()
 class Filter {
-  static const String NO_POSSIBLE_FIELD_ID = "NO_POSSIBLE_FIELD_ID";
+  static const String kNoPossibleFieldId = "NO_POSSIBLE_FIELD_ID";
 
   @JsonKey(name: 'field')
   late Field _selectedField;

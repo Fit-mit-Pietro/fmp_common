@@ -15,7 +15,9 @@ Exercise _$ExerciseFromJson(Map<String, dynamic> json) => Exercise(
           $enumDecodeNullable(_$ExerciseTypeEnumMap, json['exercise_type']),
       difficulty: (json['difficulty'] as num?)?.toInt(),
       duration: (json['duration'] as num?)?.toDouble(),
-    );
+      phase: $enumDecodeNullable(_$ExercisePhaseEnumMap, json['phase']) ??
+          ExercisePhase.mainWorkout,
+    )..volume = (json['volume'] as num?)?.toInt();
 
 Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'id': instance.id,
@@ -25,18 +27,26 @@ Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'exercise_type': _$ExerciseTypeEnumMap[instance.exerciseType],
       'difficulty': instance.difficulty,
       'duration': instance.duration,
+      'volume': instance.volume,
+      'phase': _$ExercisePhaseEnumMap[instance.phase]!,
     };
 
 const _$ExerciseTypeEnumMap = {
-  ExerciseType.ENDURANCE: 'ENDURANCE',
-  ExerciseType.MUSCLE_BUILDING: 'MUSCLE_BUILDING',
-  ExerciseType.STRENGTH: 'STRENGTH',
-  ExerciseType.STRENGTH_ENDURANCE: 'STRENGTH_ENDURANCE',
-  ExerciseType.MAXIMUM_STRENGTH: 'MAXIMUM_STRENGTH',
-  ExerciseType.QUICK_STRENGTH: 'QUICK_STRENGTH',
-  ExerciseType.FLEXIBILITY: 'FLEXIBILITY',
-  ExerciseType.BALANCE: 'BALANCE',
-  ExerciseType.RELAXATION: 'RELAXATION',
+  ExerciseType.endurance: 'ENDURANCE',
+  ExerciseType.muscleBuilding: 'MUSCLE_BUILDING',
+  ExerciseType.strength: 'STRENGTH',
+  ExerciseType.strengthEndurance: 'STRENGTH_ENDURANCE',
+  ExerciseType.maximumStrength: 'MAXIMUM_STRENGTH',
+  ExerciseType.quickStrength: 'QUICK_STRENGTH',
+  ExerciseType.flexibility: 'FLEXIBILITY',
+  ExerciseType.balance: 'BALANCE',
+  ExerciseType.relaxation: 'RELAXATION',
+};
+
+const _$ExercisePhaseEnumMap = {
+  ExercisePhase.warmup: 'WARMUP',
+  ExercisePhase.mainWorkout: 'MAIN_WORKOUT',
+  ExercisePhase.cooldown: 'COOLDOWN',
 };
 
 ExercisePropertyLinkValue _$ExercisePropertyLinkValueFromJson(

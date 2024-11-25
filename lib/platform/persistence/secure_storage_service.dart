@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SSSKeys {
-  static const String KEY_USER_PASSWORD = "user_password";
-  static const String KEY_USER_EMAIL = "user_email";
+  static const String password = "user_password";
+  static const String email = "user_email";
 }
 
 class SecureStorageService {
@@ -12,20 +13,30 @@ class SecureStorageService {
     instance = SecureStorageService._();
   }
 
+  static const bool kUseFlutterSecureStorage = kDebugMode;
+
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
-  Future storeValue(String key, String value) {
-    //return _secureStorage.write(key: key, value: value);
-    return Future.value();
+  Future<void> storeValue(String key, String value) async {
+    if (kUseFlutterSecureStorage) {
+      await _secureStorage.write(
+        key: key,
+        value: value,
+      );
+    }
   }
 
-  Future<String?> readValue(String key) {
-    return Future.value(null);
-    //return _secureStorage.read(key: key);
+  Future<String?> readValue(String key) async {
+    if (kUseFlutterSecureStorage) {
+      await _secureStorage.read(key: key);
+    }
+
+    return null;
   }
 
-  Future deleteValue(String key) {
-    return Future.value();
-    // return _secureStorage.delete(key: key);
+  Future<void> deleteValue(String key) async {
+    if (kUseFlutterSecureStorage) {
+      await _secureStorage.delete(key: key);
+    }
   }
 }

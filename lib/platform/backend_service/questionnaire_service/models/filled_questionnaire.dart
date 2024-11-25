@@ -15,7 +15,7 @@ class FilledQuestionnaire {
   List<FilledQuestionnaireElement> elements;
 
   // the length of the Questionnaire
-  int get length => elements.length ?? 0;
+  int get length => elements.length;
 
   /// Returns a new [FilledQuestionnaire] instance.
   FilledQuestionnaire({

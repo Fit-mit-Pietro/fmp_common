@@ -7,22 +7,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'body_selector_view_model.g.dart';
 
 @JsonSerializable()
-class BodySelectorViewModel{
-
-
-  @JsonKey(name: Keys.BODY_SELECTOR_PARTS_FRONT)
+class BodySelectorViewModel {
+  @JsonKey(name: Keys.bodySelectorPartsFront)
   final List<BodyPart> front;
 
-  @JsonKey(name: Keys.BODY_SELECTOR_PARTS_BACK)
+  @JsonKey(name: Keys.bodySelectorPartsBack)
   final List<BodyPart> back;
 
-  @JsonKey(ignore: true)
-  late Function(BodyPart,TapDownDetails)? onPartTapped;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  late Function(BodyPart, TapDownDetails)? onPartTapped;
 
-  @JsonKey(ignore: true)
-  Map<String,List<BodyPartSymptom>> selectedSymptoms = {};
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Map<String, List<BodyPartSymptom>> selectedSymptoms = {};
 
-  void setOnPartTapped(Function(BodyPart,TapDownDetails) callback){
+  void setOnPartTapped(Function(BodyPart, TapDownDetails) callback) {
     onPartTapped = callback;
   }
 
@@ -31,58 +29,54 @@ class BodySelectorViewModel{
     required this.back,
   });
 
-  factory BodySelectorViewModel.fromJson(Map<String, dynamic> json) => _$BodySelectorViewModelFromJson(json);
+  factory BodySelectorViewModel.fromJson(Map<String, dynamic> json) =>
+      _$BodySelectorViewModelFromJson(json);
   Map<String, dynamic> toJson() => _$BodySelectorViewModelToJson(this);
 
   bool isPartSelected(BodyPart part) {
-    if(selectedSymptoms.containsKey(part.id)){
+    if (selectedSymptoms.containsKey(part.id)) {
       List<BodyPartSymptom> selectedSympts = selectedSymptoms[part.id] ?? [];
-      if(selectedSympts.isNotEmpty) return true;
+      if (selectedSympts.isNotEmpty) return true;
     }
     return false;
   }
 
-  void updateSelection(BodyPart part) {
-
-  }
+  void updateSelection(BodyPart part) {}
 
   void setPartPath(String key, String path) {
     for (var element in front) {
-      if(element.id == key){
+      if (element.id == key) {
         element.path = path;
         continue;
       }
     }
   }
 
-
-  bool isSymtomSelected(BodyPartSymptom symptom,BodyPart part){
+  bool isSymtomSelected(BodyPartSymptom symptom, BodyPart part) {
     print(jsonEncode(selectedSymptoms));
-    if(selectedSymptoms.containsKey(part.id)){
+    if (selectedSymptoms.containsKey(part.id)) {
       List<BodyPartSymptom>? selectedSympts = selectedSymptoms[part.id];
-      if(selectedSympts != null){
-        for(BodyPartSymptom selected in selectedSympts){
-          if(selected.id == symptom.id) return true;
+      if (selectedSympts != null) {
+        for (BodyPartSymptom selected in selectedSympts) {
+          if (selected.id == symptom.id) return true;
         }
       }
     }
     return false;
   }
 
-  void onSymptomSelected(BodyPartSymptom symptom,BodyPart part) {
-    if(!selectedSymptoms.containsKey(part.id)){
+  void onSymptomSelected(BodyPartSymptom symptom, BodyPart part) {
+    if (!selectedSymptoms.containsKey(part.id)) {
       selectedSymptoms[part.id] = [];
     }
 
-    for(BodyPartSymptom selected in selectedSymptoms[part.id] ?? [] ){
-      if(selected.id == symptom.id){
+    for (BodyPartSymptom selected in selectedSymptoms[part.id] ?? []) {
+      if (selected.id == symptom.id) {
         selectedSymptoms[part.id]?.remove(selected);
         return;
       }
     }
 
     selectedSymptoms[part.id]?.add(symptom);
-
   }
 }
-

@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
-
 
 // enables to listen for user interaction on the underlying widget while also
 // providing nice animations for onTap and onLongTap Tappable
-class Tappable extends StatelessWidget{
-
+class Tappable extends StatelessWidget {
   final GestureTapCallback? onTap;
   final GestureTapCallback? onLongTap;
   final ValueChanged<bool>? onHover;
@@ -30,27 +27,22 @@ class Tappable extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    if(onTap == null && onLongTap == null && onHover == null){
+    if (onTap == null && onLongTap == null && onHover == null) {
       return child;
     }
-    return Stack(
-      fit: fit,
-      children: [
-        child,
-        Positioned.fill(
+    return Stack(fit: fit, children: [
+      child,
+      Positioned.fill(
           child: Material(
-            color: overlayColor,
-            child: InkWell(
-              focusColor: Colors.transparent,
-              borderRadius: BorderRadius.circular(radius),
-              onTap: onTap,
-              onLongPress: onLongTap,
-              onHover: onHover,
-              hoverColor: hoverColor,
-            )
-          )
-        )
-      ]
-    );
+              color: overlayColor,
+              child: InkWell(
+                focusColor: Colors.transparent,
+                borderRadius: BorderRadius.circular(radius),
+                onTap: onTap,
+                onLongPress: onLongTap,
+                onHover: onHover,
+                hoverColor: hoverColor,
+              )))
+    ]);
   }
 }

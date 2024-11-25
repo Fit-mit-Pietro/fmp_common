@@ -1,13 +1,14 @@
-
 part of user_service;
 
-abstract class IUserService{
-
-  factory IUserService(UserServiceType userServiceType,UserServiceConfig config){
-    switch(userServiceType){
-
+abstract class IUserService {
+  factory IUserService(
+      UserServiceType userServiceType, UserServiceConfig config) {
+    switch (userServiceType) {
       case UserServiceType.mock:
-        return _UserServiceMock(MockBackend(),config);
+        return _UserServiceMock(
+          MockBackend(),
+          config,
+        );
       case UserServiceType.real:
         return _UserServiceReal(config);
     }
@@ -17,10 +18,7 @@ abstract class IUserService{
 
   Future delete(String token);
 
+  Future<UserLoginResult> login(String userEmail, String userPassword);
 
-  Future<UserLoginResult> login(String userEmail,String userPassword);
-
-
-  Future<UserRegisterResult> register(User user,String userPassword);
-
+  Future<UserRegisterResult> register(User user, String userPassword);
 }

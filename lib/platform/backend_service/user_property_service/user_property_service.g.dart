@@ -30,10 +30,10 @@ Map<String, dynamic> _$UserPropertyToJson(UserProperty instance) =>
     };
 
 const _$UserPropertyTypeEnumMap = {
-  UserPropertyType.BOOL: 'BOOL',
-  UserPropertyType.INT: 'INT',
-  UserPropertyType.FULL_TEXT: 'FULL_TEXT',
-  UserPropertyType.BODY_MAP: 'BODY_MAP',
-  UserPropertyType.ENUM: 'ENUM',
-  UserPropertyType.DATES_IN_WEEK: 'DATES_IN_WEEK',
+  UserPropertyType.bool: 'BOOL',
+  UserPropertyType.int: 'INT',
+  UserPropertyType.fullText: 'FULL_TEXT',
+  UserPropertyType.bodyMap: 'BODY_MAP',
+  UserPropertyType.$enum: 'ENUM',
+  UserPropertyType.datesInWeek: 'DATES_IN_WEEK',
 };

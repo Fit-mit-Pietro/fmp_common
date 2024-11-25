@@ -2,6 +2,7 @@ part of exercise_service;
 
 class _ExerciseServiceMock extends CRUDTemplateServiceMock<Exercise>
     implements IExerciseService {
+  // ignore: unused_field
   final ExerciseServiceConfig _config;
 
   final List<ExercisePropertyLink> _linkDb = [];
@@ -106,7 +107,6 @@ class _ExerciseServiceMock extends CRUDTemplateServiceMock<Exercise>
 
   @override
   Future<String> uploadFile(String id, MultipartFile file) {
-    // TODO: implement uploadFile
     throw UnimplementedError();
   }
 }

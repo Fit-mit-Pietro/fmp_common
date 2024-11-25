@@ -1,10 +1,14 @@
+enum UserRegisterResultStatus {
+  successful,
+  userAlreadyExists,
+  unknownError,
+  unableToReachServer,
+}
 
-enum UserRegisterResultStatus {successful,userAlreadyExists,unknownError,unableToReachServer}
-
-class UserRegisterResult{
+class UserRegisterResult {
+  const UserRegisterResult(this._status);
 
   final UserRegisterResultStatus _status;
-  UserRegisterResultStatus get status => _status;
 
-  UserRegisterResult(this._status);
+  UserRegisterResultStatus get status => _status;
 }

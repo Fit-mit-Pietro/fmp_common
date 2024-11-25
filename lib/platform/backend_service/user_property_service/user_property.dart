@@ -2,17 +2,17 @@ part of user_property_service;
 
 enum UserPropertyType {
   @JsonValue('BOOL')
-  BOOL,
+  bool,
   @JsonValue('INT')
-  INT,
+  int,
   @JsonValue('FULL_TEXT')
-  FULL_TEXT,
+  fullText,
   @JsonValue('BODY_MAP')
-  BODY_MAP,
+  bodyMap,
   @JsonValue('ENUM')
-  ENUM,
+  $enum,
   @JsonValue('DATES_IN_WEEK')
-  DATES_IN_WEEK,
+  datesInWeek,
 }
 
 class UserPropertyTypeMapper {
@@ -26,12 +26,12 @@ class UserPropertyTypeMapper {
   };
 
   static Map<UserPropertyType, String> keyMap = {
-    UserPropertyType.BOOL: "BOOL",
-    UserPropertyType.INT: "INT",
-    UserPropertyType.FULL_TEXT: "FULL_TEXT",
-    UserPropertyType.BODY_MAP: "BODY_MAP",
-    UserPropertyType.ENUM: "ENUM",
-    UserPropertyType.DATES_IN_WEEK: "DATES_IN_WEEK"
+    UserPropertyType.bool: "BOOL",
+    UserPropertyType.int: "INT",
+    UserPropertyType.fullText: "FULL_TEXT",
+    UserPropertyType.bodyMap: "BODY_MAP",
+    UserPropertyType.$enum: "ENUM",
+    UserPropertyType.datesInWeek: "DATES_IN_WEEK"
   };
 
   static UserPropertyType fromKey(String key) {
@@ -76,7 +76,7 @@ class UserProperty implements Identifiable {
   factory UserProperty.createNew(
           {String label = "Neues Symptom",
           String id = "symptom_1",
-          UserPropertyType propertyType = UserPropertyType.BOOL,
+          UserPropertyType propertyType = UserPropertyType.bool,
           Map<String, String>? propertyOptions}) =>
       UserProperty(
           id: id,

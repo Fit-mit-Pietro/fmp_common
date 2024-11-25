@@ -1,5 +1,4 @@
-library MyRouting;
-
+library my_routing;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,34 +6,24 @@ import 'package:fmp_common/platform/navigation/data/base_navigation_data.dart';
 import 'package:fmp_common/platform/navigation/routing/routing_page_animated.dart';
 import 'package:fmp_common/platform/navigation/routing/transition_mode.dart';
 
-
-dynamic getRoute(Widget screen,TransitionMode mode){
-
-  switch(mode){
-
-    case TransitionMode.FADE:
-      return FadeRoute(page: screen);
-
-    case TransitionMode.SLIDE_FROM_LEFT:
-      return SlideRoute(page: screen,transitionMode: mode,);
-
-    case TransitionMode.SLIDE_FROM_RIGHT:
-      return SlideRoute(page: screen,transitionMode: mode);
-
-    case TransitionMode.SLIDE_FROM_BOTTOM:
-      return SlideRoute(page: screen,transitionMode: mode);
-
-    case TransitionMode.SLIDE_FROM_RIGHT_TO_LEFT:
-      return SlideFromToRoute(page: screen,transitionMode: mode);
-
-    case TransitionMode.NONE:
-      return PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: BaseNavigationData.PAGE_TRANSIT_DURATION_MS),
-          pageBuilder: (_, __, ___) => screen
-      );
-
-  }
-}
+PageRouteBuilder<T> getPageRouteBuilder<T>(
+        Widget screen, TransitionMode mode) =>
+    switch (mode) {
+      TransitionMode.fade => FadeRoute(page: screen),
+      TransitionMode.slideFromLeft => SlideRoute(
+          page: screen,
+          transitionMode: mode,
+        ),
+      TransitionMode.slideFromRight =>
+        SlideRoute(page: screen, transitionMode: mode),
+      TransitionMode.slideFromBotton =>
+        SlideRoute(page: screen, transitionMode: mode),
+      TransitionMode.slideFromRightToLeft =>
+        SlideFromToRoute(page: screen, transitionMode: mode),
+      TransitionMode.none => PageRouteBuilder(
+          transitionDuration: BaseNavigationData.pageTransitionDuration,
+          pageBuilder: (_, __, ___) => screen)
+    };
 
 Future<Widget> buildPageAsync(Widget? screen) async {
   return Future.microtask(() {
@@ -42,22 +31,24 @@ Future<Widget> buildPageAsync(Widget? screen) async {
   });
 }
 
+Future<T?> push<T>({
+  required Widget screen,
+  TransitionMode? mode,
+  required NavigatorState navigator,
+}) async =>
+    await navigator.push(
+      getPageRouteBuilder(
+          await buildPageAsync(screen), mode ?? TransitionMode.fade),
+    );
 
-Future<dynamic> push({required Widget screen,TransitionMode? mode,required NavigatorState navigator}) async{
+Future<T?> pushReplacement<T extends Object?, TO extends Object?>({
+  required Widget screen,
+  TransitionMode? mode,
+  required NavigatorState navigator,
+}) async =>
+    await navigator.pushReplacement<T, TO>(
+      getPageRouteBuilder(await buildPageAsync(screen), TransitionMode.fade),
+    );
 
-  mode ??= TransitionMode.FADE;
-  return await navigator.push(
-    getRoute(await buildPageAsync(screen),mode),
-  );
-}
-
-Future<dynamic>  pushReplacement({required Widget screen,TransitionMode? mode,required NavigatorState navigator}) async{
-  mode ??= TransitionMode.FADE;
-  return await navigator.pushReplacement(
-    getRoute(await buildPageAsync(screen),mode),
-  );
-}
-
-void pop(BuildContext context,{dynamic data}){
-  Navigator.pop(context,data);
-}
+void pop<T extends Object?>(BuildContext context, {T? result}) =>
+    Navigator.pop<T>(context, result);

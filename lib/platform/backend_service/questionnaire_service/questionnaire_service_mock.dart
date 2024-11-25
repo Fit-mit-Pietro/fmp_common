@@ -1,15 +1,11 @@
-
 part of questionnaire_service;
 
-
-class _QuestionnaireServiceMock
-    extends CRUDTemplateServiceMock<Questionnaire>
-    implements IQuestionnaireService
-{
-
+class _QuestionnaireServiceMock extends CRUDTemplateServiceMock<Questionnaire>
+    implements IQuestionnaireService {
+  // ignore: unused_field
   final QuestionnaireServiceConfig _config;
 
-  _QuestionnaireServiceMock(this._config):super(_config){
+  _QuestionnaireServiceMock(this._config) : super(_config) {
     create(Questionnaire.createNew(
       label: "Das ist der Fragebogen 1",
     ));
@@ -22,57 +18,50 @@ class _QuestionnaireServiceMock
   }
 
   @override
-  Future<FilledQuestionnaire> getFilledQuestionnaireById(String id)async {
-
+  Future<FilledQuestionnaire> getFilledQuestionnaireById(String id) async {
     print("getFilledQuestionnaireById $id");
 
     Questionnaire questionnaire = await getById(id);
 
-    print("Loaded Questionnaire: $questionnaire" );
+    print("Loaded Questionnaire: $questionnaire");
 
     List<FilledQuestion> filledQuestions = await getFilledQuestion(
-      questionnaire.elements.map((e) => e.questionId).toList()
-    );
+        questionnaire.elements.map((e) => e.questionId).toList());
 
     List<FilledQuestionnaireElement> elements = [];
 
-    for(QuestionnaireElement element in questionnaire.elements) {
-
-
-
+    for (QuestionnaireElement element in questionnaire.elements) {
       FilledQuestionnaireElement filledElement = FilledQuestionnaireElement(
           index: element.index,
-          filledQuestion: filledQuestions.firstWhere((q) => q.id == element.questionId)
-      );
-
+          filledQuestion:
+              filledQuestions.firstWhere((q) => q.id == element.questionId));
 
       elements.add(filledElement);
     }
 
-
     return FilledQuestionnaire(
-        id: questionnaire.id,
-        label: questionnaire.label,
-        elements: elements
-    );
+        id: questionnaire.id, label: questionnaire.label, elements: elements);
   }
 
-  Future<List<FilledQuestion>> getFilledQuestion(List<String> questionIds) async{
-
-    if(questionIds.isEmpty) return [];
+  Future<List<FilledQuestion>> getFilledQuestion(
+      List<String> questionIds) async {
+    if (questionIds.isEmpty) return [];
 
     // get questions
-    List<Question> questions = await QuestionService.instance.getList(ids: questionIds);
+    List<Question> questions =
+        await QuestionService.instance.getList(ids: questionIds);
     //print(questions.length);
     // get user symptoms
-    List<String> userPropertyIds = questions.map((e) => e.userPropertyId).toList();
+    List<String> userPropertyIds =
+        questions.map((e) => e.userPropertyId).toList();
     //print(questions.length);
 
-    List<UserProperty> userProperties = await UserPropertyService.instance.getList(ids: userPropertyIds);
+    List<UserProperty> userProperties =
+        await UserPropertyService.instance.getList(ids: userPropertyIds);
     List<FilledQuestion> filledQuestions = [];
 
     // merge both lists to FilledQuestionnaireElement
-    for(Question question in questions) {
+    for (Question question in questions) {
       UserProperty? userProperty;
 
       for (UserProperty property in userProperties) {
@@ -88,10 +77,7 @@ class _QuestionnaireServiceMock
       }
 
       FilledQuestion filledQuestion = FilledQuestion(
-          id: question.id,
-          text: question.label,
-          userProperty: userProperty
-      );
+          id: question.id, text: question.label, userProperty: userProperty);
       filledQuestions.add(filledQuestion);
     }
     return filledQuestions;

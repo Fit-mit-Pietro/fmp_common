@@ -7,7 +7,7 @@ class _ExerciseServiceReal implements IExerciseService {
   _ExerciseServiceReal(ExerciseServiceConfig config)
       : _api = swagger.ExcerciseServiceApi.create(
           interceptors: [AuthInterceptor(token: kToken)],
-          baseUrl: Uri.parse(config.SERVICE_URL),
+          baseUrl: Uri.parse(config.serviceUrl),
         );
 
   final swagger.ExcerciseServiceApi _api;
