@@ -48,12 +48,12 @@ export 'platform/models/body_selector/body_selector_view_model.dart';
 //keys
 export 'platform/keys/keys.dart';
 
-class ServerData {
-  // static const String URL = "http://ec2-18-198-189-148.eu-central-1.compute.amazonaws.com";
-// ignore: constant_identifier_names
-  static const kDeploymentMode = true;
+// class ServerData {
+//   // static const String URL = "http://ec2-18-198-189-148.eu-central-1.compute.amazonaws.com";
+// // ignore: constant_identifier_names
+//   static const kDeploymentMode = true;
 
-  static const String URL = kDeploymentMode
-      ? "http://ec2-18-194-209-238.eu-central-1.compute.amazonaws.com/"
-      : "http://localhost";
-}
+// //   static const String URL = kDeploymentMode
+// //       ? "http://ec2-18-194-209-238.eu-central-1.compute.amazonaws.com"
+// //       : "http://localhost";
+// }

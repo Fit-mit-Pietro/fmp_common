@@ -39,6 +39,7 @@ dependencies:
   uuid: 3.0.6
   chopper: ^6.1.4
   json_annotation: ^4.9.0 # flutter pub run build_runner build
+  flutter_dotenv: ^5.2.1
 
 # ----------------------
 
